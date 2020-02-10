@@ -12,7 +12,9 @@ import java.io.Serializable;
  * A Favorite.
  */
 @Entity
-@Table(name = "favorite")
+// Manual entry - add unique composite index
+@Table(name = "favorite", uniqueConstraints=
+    @UniqueConstraint(columnNames = {"user_id", "gif_id"}))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Favorite implements Serializable {
 

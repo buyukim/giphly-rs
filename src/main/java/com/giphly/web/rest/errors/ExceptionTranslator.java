@@ -4,6 +4,7 @@ import io.github.jhipster.web.util.HeaderUtil;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.ConcurrencyFailureException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -119,6 +120,15 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
             .withStatus(Status.CONFLICT)
             .with(MESSAGE_KEY, ErrorConstants.ERR_CONCURRENCY_FAILURE)
             .build();
+        return create(ex, problem, request);
+    }
+
+    // Manual entry
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Problem> processDataIntegrityViolationException(DataIntegrityViolationException ex, NativeWebRequest request) {
+        Problem problem =  Problem.builder()
+            .withStatus(Status.BAD_REQUEST)
+            .with(MESSAGE_KEY, ErrorConstants.ERR_VALIDATION_DUPLICATE).build();
         return create(ex, problem, request);
     }
 }

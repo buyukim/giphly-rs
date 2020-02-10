@@ -79,13 +79,13 @@ public class GifResource {
     }
 
     /**
-     * {@code GET  /gifs} : get all the gifs.
+     * {@code GET  /gifs} : get all the gifs in **Giphly**
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of gifs in body.
      */
     @GetMapping("/gifs")
     public List<Gif> getAllGifs() {
-        log.debug("REST request to get all Gifs");
+        log.debug("REST request to get all GIPHLY gifs");
         return gifService.findAll();
     }
 
