@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-10T13:00:18.898581-06:00[America/Chicago]")
 
-public class InlineResponse200   {
+public class GiphyPaginatedResponse {
   @JsonProperty("data")
   @Valid
   private List<GiphyGif> data = null;
@@ -24,12 +24,12 @@ public class InlineResponse200   {
   @JsonProperty("pagination")
   private Pagination pagination;
 
-  public InlineResponse200 data(List<GiphyGif> data) {
+  public GiphyPaginatedResponse data(List<GiphyGif> data) {
     this.data = data;
     return this;
   }
 
-  public InlineResponse200 addDataItem(GiphyGif dataItem) {
+  public GiphyPaginatedResponse addDataItem(GiphyGif dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<>();
     }
@@ -53,7 +53,7 @@ public class InlineResponse200   {
     this.data = data;
   }
 
-  public InlineResponse200 meta(Meta meta) {
+  public GiphyPaginatedResponse meta(Meta meta) {
     this.meta = meta;
     return this;
   }
@@ -74,7 +74,7 @@ public class InlineResponse200   {
     this.meta = meta;
   }
 
-  public InlineResponse200 pagination(Pagination pagination) {
+  public GiphyPaginatedResponse pagination(Pagination pagination) {
     this.pagination = pagination;
     return this;
   }
@@ -104,10 +104,10 @@ public class InlineResponse200   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse200 inlineResponse200 = (InlineResponse200) o;
-    return Objects.equals(this.data, inlineResponse200.data) &&
-        Objects.equals(this.meta, inlineResponse200.meta) &&
-        Objects.equals(this.pagination, inlineResponse200.pagination);
+    GiphyPaginatedResponse giphyPaginatedResponse = (GiphyPaginatedResponse) o;
+    return Objects.equals(this.data, giphyPaginatedResponse.data) &&
+        Objects.equals(this.meta, giphyPaginatedResponse.meta) &&
+        Objects.equals(this.pagination, giphyPaginatedResponse.pagination);
   }
 
   @Override

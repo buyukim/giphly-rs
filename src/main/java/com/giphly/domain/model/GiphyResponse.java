@@ -11,14 +11,14 @@ import java.util.Objects;
  */
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-10T13:00:18.898581-06:00[America/Chicago]")
 
-public class InlineResponse2001   {
+public class GiphyResponse {
   @JsonProperty("data")
   private GiphyGif data;
 
   @JsonProperty("meta")
   private Meta meta;
 
-  public InlineResponse2001 data(GiphyGif data) {
+  public GiphyResponse data(GiphyGif data) {
     this.data = data;
     return this;
   }
@@ -39,7 +39,7 @@ public class InlineResponse2001   {
     this.data = data;
   }
 
-  public InlineResponse2001 meta(Meta meta) {
+  public GiphyResponse meta(Meta meta) {
     this.meta = meta;
     return this;
   }
@@ -69,7 +69,7 @@ public class InlineResponse2001   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2001 inlineResponse2001 = (InlineResponse2001) o;
+    GiphyResponse inlineResponse2001 = (GiphyResponse) o;
     return Objects.equals(this.data, inlineResponse2001.data) &&
         Objects.equals(this.meta, inlineResponse2001.meta);
   }
