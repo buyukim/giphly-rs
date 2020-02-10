@@ -34,7 +34,7 @@
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
-    "enableTranslation": false,
+    "enableTranslation": true,
     "blueprints": []
   }
 }
