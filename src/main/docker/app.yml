@@ -1,0 +1,16 @@
+version: '2'
+services:
+  giphly-app:
+    image: giphly
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://giphly-postgresql:5432/giphly
+      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+    ports:
+      - 8080:8080
+  giphly-postgresql:
+    extends:
+      file: postgresql.yml
+      service: giphly-postgresql
