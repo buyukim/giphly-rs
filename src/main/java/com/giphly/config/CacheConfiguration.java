@@ -41,6 +41,11 @@ public class CacheConfiguration {
             createCache(cm, com.giphly.domain.User.class.getName());
             createCache(cm, com.giphly.domain.Authority.class.getName());
             createCache(cm, com.giphly.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.giphly.domain.Gif.class.getName());
+            createCache(cm, com.giphly.domain.Gif.class.getName() + ".categories");
+            createCache(cm, com.giphly.domain.Category.class.getName());
+            createCache(cm, com.giphly.domain.Category.class.getName() + ".gifs");
+            createCache(cm, com.giphly.domain.Favorite.class.getName());
             // jhipster-needle-caffeine-add-entry
         };
     }
