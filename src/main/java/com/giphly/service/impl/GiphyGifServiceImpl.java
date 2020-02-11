@@ -1,20 +1,31 @@
 package com.giphly.service.impl;
 
 import com.giphly.client.giphy.api.GifsApi;
+import com.giphly.client.giphy.api.model.Gif;
 import com.giphly.client.giphy.api.model.GiphyGifInlineResponse200;
 import com.giphly.client.giphy.api.model.GiphyGifsInlineResponse200;
 import com.giphly.domain.model.GiphyPaginatedResponse;
 import com.giphly.domain.model.GiphyResponse;
 import com.giphly.service.GiphyGifService;
 import com.giphly.service.mapper.GiphyMapper;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientResponseException;
 
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ForkJoinPool;
+
 @Service
 public class GiphyGifServiceImpl implements GiphyGifService {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    public static final String CPU_CACHE = "availableCpuCache";
 
     private static final String G_RATING = "g";
     private GifsApi gifsApi;
@@ -33,6 +44,10 @@ public class GiphyGifServiceImpl implements GiphyGifService {
     public ResponseEntity<GiphyResponse> getGifById(String giphyGifId) {
         try {
             GiphyGifInlineResponse200 response = gifsApi.getGifById(giphyGifId);
+            if (response != null && isGifNotFamilyFriendly(response.getData())) {
+                log.error("Rating for GIF is not G-rated, throwing 400 error");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
             return new ResponseEntity<>(mapper.toGiphyResponse(response), HttpStatus.OK);
         } catch (RestClientResponseException e) {
             // relay Giphy's response code as our own since it is basically a proxy
@@ -66,10 +81,47 @@ public class GiphyGifServiceImpl implements GiphyGifService {
     public ResponseEntity<GiphyPaginatedResponse> getGifsById(String ids) {
         try {
             GiphyGifsInlineResponse200 response = gifsApi.getGifsById(ids);
+            if (response != null && isGifListNotFamilyFriendly(response.getData())) {
+                log.error("Rating for GIFs is not G-rated, throwing 400 error");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
             return new ResponseEntity<>(mapper.toGiphyResponse(response), HttpStatus.OK);
         } catch (RestClientResponseException e) {
             // relay Giphy's response code as our own since it is basically a proxy
             return new ResponseEntity<>(HttpStatus.valueOf(e.getRawStatusCode()));
         }
+    }
+
+    public boolean isGifListNotFamilyFriendly(List<Gif> gifs) {
+        if (gifs == null || gifs.size() == 0) {
+            return false;
+        }
+        if (gifs.size() <= 10 ||
+            Runtime.getRuntime().availableProcessors() <= 1) {
+            return gifs.stream().anyMatch(this::isGifNotFamilyFriendly);
+        }
+        // when doing parallel, best to use separate thread pools instead of
+        // the default global one to avoid blocking/slowness from outside tasks
+        ForkJoinPool customThreadPool = new ForkJoinPool();
+        try {
+            return customThreadPool.submit(
+                () -> gifs.parallelStream().anyMatch(this::isGifNotFamilyFriendly)).get();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean isGifNotFamilyFriendly(Gif gif) {
+        if (gif == null) {
+            return false;
+        }
+        boolean failed = StringUtils.isNotBlank(gif.getRating()) &&
+            !G_RATING.equalsIgnoreCase(gif.getRating());
+        if (failed) {
+            log.error("Found improper rating of: " + gif.getRating() + ", failing...");
+        }
+        return failed;
     }
 }
