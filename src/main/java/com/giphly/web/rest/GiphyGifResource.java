@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestClientException;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -73,7 +72,7 @@ public class GiphyGifResource {
         method = RequestMethod.GET)
     public ResponseEntity<GiphyPaginatedResponse> getGifsById(@ApiParam(value = "Filters results by specified Giphy GIF IDs (alphanumeric), separated by commas.") @Valid @RequestParam(value = "ids", required = false) String ids) {
 
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        return giphyGifService.getGifsById(ids);
 
     }
 
@@ -102,10 +101,8 @@ public class GiphyGifResource {
     @RequestMapping(value = "/giphy-gifs/search",
         produces = { "application/json" },
         method = RequestMethod.GET)
-    public ResponseEntity<GiphyPaginatedResponse> searchGifs(@NotNull @ApiParam(value = "Search query term or prhase.", required = true) @Valid @RequestParam(value = "q", required = true) String q, @ApiParam(value = "The maximum number of records to return.", defaultValue = "25") @Valid @RequestParam(value = "limit", required = false, defaultValue="25") Integer limit, @ApiParam(value = "An optional results offset.", defaultValue = "0") @Valid @RequestParam(value = "offset", required = false, defaultValue="0") Integer offset, @ApiParam(value = "Specify default language for regional content; use a 2-letter ISO 639-1 language code.") @Valid @RequestParam(value = "lang", required = false) String lang) {
-
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
+    public ResponseEntity<GiphyPaginatedResponse> searchGifs(@NotNull @ApiParam(value = "Search query term or phrase.", required = true) @Valid @RequestParam(value = "q", required = true) String q, @ApiParam(value = "The maximum number of records to return.", defaultValue = "25") @Valid @RequestParam(value = "limit", required = false, defaultValue="25") Integer limit, @ApiParam(value = "An optional results offset.", defaultValue = "0") @Valid @RequestParam(value = "offset", required = false, defaultValue="0") Integer offset, @ApiParam(value = "Specify default language for regional content; use a 2-letter ISO 639-1 language code.") @Valid @RequestParam(value = "lang", required = false) String lang) {
+        return giphyGifService.searchGifs(q, limit,offset,lang);
     }
 
 
@@ -132,9 +129,7 @@ public class GiphyGifResource {
         produces = { "application/json" },
         method = RequestMethod.GET)
     public ResponseEntity<GiphyPaginatedResponse> trendingGifs(@ApiParam(value = "The maximum number of records to return.", defaultValue = "25") @Valid @RequestParam(value = "limit", required = false, defaultValue="25") Integer limit, @ApiParam(value = "An optional results offset.", defaultValue = "0") @Valid @RequestParam(value = "offset", required = false, defaultValue="0") Integer offset) {
-
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
+        return giphyGifService.trendingGifs(limit, offset);
     }
 
 }
