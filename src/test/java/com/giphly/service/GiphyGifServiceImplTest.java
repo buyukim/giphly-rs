@@ -14,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertFalse;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
@@ -92,6 +93,21 @@ public class GiphyGifServiceImplTest {
         boolean result = fixture.isGifListNotFamilyFriendly(gifs);
         assertFalse("must be false; all G-rated content", result);
 
+    }
+
+    @Test
+    public void testNormalizeLangAngular() {
+        // angular may pass in BCP47
+        String language = "en-US";
+        String result = fixture.normalizeLang(language);
+        assertEquals( "en", result, "result must be English");
+    }
+
+    @Test
+    public void testNormalizeLangISO() {
+        String language = "en";
+        String result = fixture.normalizeLang(language);
+        assertEquals( "en", result, "result must be English");
     }
 
     private Gif forRating(String rating) {

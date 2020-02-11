@@ -68,8 +68,9 @@ public class GiphyGifServiceImpl implements GiphyGifService {
 
     @Override
     public ResponseEntity<GiphyPaginatedResponse> searchGifs(String q, Integer limit, Integer offset, String lang) {
+
         try {
-            GiphyGifsInlineResponse200 response = gifsApi.searchGifs(q,limit, offset, G_RATING, lang);
+            GiphyGifsInlineResponse200 response = gifsApi.searchGifs(q,limit, offset, G_RATING, normalizeLang(lang));
             return new ResponseEntity<>(mapper.toGiphyResponse(response), HttpStatus.OK);
         } catch (RestClientResponseException e) {
             // relay Giphy's response code as our own since it is basically a proxy
@@ -123,5 +124,28 @@ public class GiphyGifServiceImpl implements GiphyGifService {
             log.error("Found improper rating of: " + gif.getRating() + ", failing...");
         }
         return failed;
+    }
+
+    /**
+     * Tries to normalize the BCP47 locales (Angular i18n) with the format required by Giphy (2-letter ISO 639-1)
+     * @param lang can be either BCP47 or
+     * @return normalized value; null if we could not figure out the language or if null/empty was passed in
+     */
+    public String normalizeLang(String lang) {
+        String trimmed = StringUtils.trimToNull(lang);
+        if (trimmed == null) {
+            return null;
+        }
+        if (trimmed.length() < 2) {
+            return null;
+        }
+        if (trimmed.length() == 2) {
+            return trimmed.toLowerCase();
+        }
+        String[] parts = StringUtils.split(trimmed,'-');
+        if (parts != null && parts[0].length() == 2) {
+            return parts[0].toLowerCase();
+        }
+        return null;
     }
 }
