@@ -75,7 +75,7 @@ public class ApiClient {
 
     protected void init() {
         // Use RFC3339 format for date and datetime.
-        // See http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14
+        // See https://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14
         this.dateFormat = new RFC3339DateFormat();
 
         // Use UTC as the default time zone.
@@ -497,10 +497,10 @@ public class ApiClient {
     }
 
     /**
-     * Invoke API by sending HTTP request with the given options.
+     * Invoke API by sending https request with the given options.
      *
      * @param <T> the return type to use
-     * @param path The sub-path of the HTTP URL
+     * @param path The sub-path of the URL
      * @param method The request method
      * @param queryParams The query parameters
      * @param body The request body object
@@ -611,7 +611,7 @@ public class ApiClient {
     }
 
     /**
-     * Build the RestTemplate used to make HTTP requests.
+     * Build the RestTemplate used to make https requests.
      * @return RestTemplate
      */
     protected RestTemplate buildRestTemplate() {

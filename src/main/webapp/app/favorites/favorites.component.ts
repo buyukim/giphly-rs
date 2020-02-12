@@ -8,5 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class FavoritesComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  loadAll(): void {
+    // this.categoryService.query().subscribe((res: HttpResponse<ICategory[]>) => (this.categories = res.body || []));
+  }
+
+  ngOnInit(): void {
+    this.loadAll();
+    // this.registerChangeInCategories();
+  }
 }
