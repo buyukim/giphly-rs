@@ -13,6 +13,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
     RouterModule.forRoot(
       [
         {
+          path: 'favorites',
+          loadChildren: () => import('./favorites/favorites.module').then(m => m.FavoritesModule)
+        },
+        {
           path: 'admin',
           data: {
             authorities: ['ROLE_ADMIN']
