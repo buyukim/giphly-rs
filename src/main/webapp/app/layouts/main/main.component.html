@@ -8,6 +8,26 @@
     <div class="card jh-card">
         <router-outlet></router-outlet>
     </div>
+    <div [ngSwitch]="(!isAuthenticated()) || (!hasRole('ROLE_ADMIN'))">
+        <div *ngSwitchCase="true" >
+            <div id="bottom-bar">
+            <button type="button"
+                    routerLink="/"
+                    class="btn btn-large">
+                <fa-icon icon="home"></fa-icon>
+            </button>
+            <button type="button"
+                    routerLink="favorites"
+                    class="btn btn-large">
+                <fa-icon icon="heart"></fa-icon>
+            </button>
+            <button type="button"
+                    routerLink="profile"
+                    class="btn btn-large">
+                <fa-icon icon="user"></fa-icon>
+            </button>
+            </div>
+        </div>
+    </div>
 
-    <jhi-footer></jhi-footer>
 </div>

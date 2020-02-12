@@ -1,6 +1,8 @@
 package com.giphly.web.rest;
 
 import com.giphly.domain.Favorite;
+import com.giphly.security.AuthoritiesConstants;
+import com.giphly.security.SecurityUtils;
 import com.giphly.service.FavoriteService;
 import com.giphly.web.rest.errors.BadRequestAlertException;
 
@@ -85,7 +87,11 @@ public class FavoriteResource {
     @GetMapping("/favorites")
     public List<Favorite> getAllFavorites() {
         log.debug("REST request to get all Favorites");
-        return favoriteService.findAll();
+        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+            // only admin should see all favorites since they are user-specific
+            return favoriteService.findAll();
+        }
+        return favoriteService.findAllForLoggedInUser();
     }
 
     /**

@@ -120,7 +120,7 @@ public class GiphyGif   {
    * The unique bit.ly URL for this GIF
    * @return bitlyUrl
   */
-  @ApiModelProperty(example = "http://gph.is/1gsWDcL", value = "The unique bit.ly URL for this GIF")
+  @ApiModelProperty(example = "https://gph.is/1gsWDcL", value = "The unique bit.ly URL for this GIF")
 
 
   public String getBitlyUrl() {
@@ -181,7 +181,7 @@ public class GiphyGif   {
    * A URL used for embedding this GIF
    * @return embdedUrl
   */
-  @ApiModelProperty(example = "http://giphy.com/embed/YsTs5ltWtEhnq", value = "A URL used for embedding this GIF")
+  @ApiModelProperty(example = "https://giphy.com/embed/YsTs5ltWtEhnq", value = "A URL used for embedding this GIF")
 
 
   public String getEmbdedUrl() {
@@ -331,7 +331,7 @@ public class GiphyGif   {
    * The page on which this GIF was found
    * @return source
   */
-  @ApiModelProperty(example = "http://www.reddit.com/r/reactiongifs/comments/1xpyaa/superman_goes_to_hollywood/", value = "The page on which this GIF was found")
+  @ApiModelProperty(example = "https://www.reddit.com/r/reactiongifs/comments/1xpyaa/superman_goes_to_hollywood/", value = "The page on which this GIF was found")
 
 
   public String getSource() {
@@ -351,7 +351,7 @@ public class GiphyGif   {
    * The URL of the webpage on which this GIF was found.
    * @return sourcePostUrl
   */
-  @ApiModelProperty(example = "http://cheezburger.com/5282328320", value = "The URL of the webpage on which this GIF was found.")
+  @ApiModelProperty(example = "https://cheezburger.com/5282328320", value = "The URL of the webpage on which this GIF was found.")
 
 
   public String getSourcePostUrl() {
@@ -481,7 +481,7 @@ public class GiphyGif   {
    * The unique URL for this GIF
    * @return url
   */
-  @ApiModelProperty(example = "http://giphy.com/gifs/confused-flying-YsTs5ltWtEhnq", value = "The unique URL for this GIF")
+  @ApiModelProperty(example = "https://giphy.com/gifs/confused-flying-YsTs5ltWtEhnq", value = "The unique URL for this GIF")
 
 
   public String getUrl() {

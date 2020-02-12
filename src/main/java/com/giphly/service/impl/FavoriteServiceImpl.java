@@ -52,6 +52,18 @@ public class FavoriteServiceImpl implements FavoriteService {
     }
 
     /**
+     * Get all the favorites for the currently logged in user
+     *
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<Favorite> findAllForLoggedInUser() {
+        log.debug("Request to get all Favorites");
+        return favoriteRepository.findByUserIsCurrentUser();
+    }
+
+    /**
      * Get one favorite by id.
      *
      * @param id the id of the entity.

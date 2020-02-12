@@ -152,7 +152,7 @@ public class Gif {
    * @return bitlyUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "http://gph.is/1gsWDcL", value = "The unique bit.ly URL for this GIF")
+  @ApiModelProperty(example = "https://gph.is/1gsWDcL", value = "The unique bit.ly URL for this GIF")
   @JsonProperty(JSON_PROPERTY_BITLY_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -227,7 +227,7 @@ public class Gif {
    * @return embdedUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "http://giphy.com/embed/YsTs5ltWtEhnq", value = "A URL used for embedding this GIF")
+  @ApiModelProperty(example = "https://giphy.com/embed/YsTs5ltWtEhnq", value = "A URL used for embedding this GIF")
   @JsonProperty(JSON_PROPERTY_EMBDED_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -410,7 +410,7 @@ public class Gif {
    * @return source
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "http://www.reddit.com/r/reactiongifs/comments/1xpyaa/superman_goes_to_hollywood/", value = "The page on which this GIF was found")
+  @ApiModelProperty(example = "https://www.reddit.com/r/reactiongifs/comments/1xpyaa/superman_goes_to_hollywood/", value = "The page on which this GIF was found")
   @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -435,7 +435,7 @@ public class Gif {
    * @return sourcePostUrl
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "http://cheezburger.com/5282328320", value = "The URL of the webpage on which this GIF was found.")
+  @ApiModelProperty(example = "https://cheezburger.com/5282328320", value = "The URL of the webpage on which this GIF was found.")
   @JsonProperty(JSON_PROPERTY_SOURCE_POST_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -593,7 +593,7 @@ public class Gif {
    * @return url
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "http://giphy.com/gifs/confused-flying-YsTs5ltWtEhnq", value = "The unique URL for this GIF")
+  @ApiModelProperty(example = "https://giphy.com/gifs/confused-flying-YsTs5ltWtEhnq", value = "The unique URL for this GIF")
   @JsonProperty(JSON_PROPERTY_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
