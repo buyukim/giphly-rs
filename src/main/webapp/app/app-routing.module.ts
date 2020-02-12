@@ -13,6 +13,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
     RouterModule.forRoot(
       [
         {
+          path: 'profile',
+          loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+        },
+        {
           path: 'favorites',
           loadChildren: () => import('./favorites/favorites.module').then(m => m.FavoritesModule)
         },

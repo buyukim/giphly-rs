@@ -57,4 +57,12 @@ export class MainComponent implements OnInit {
     }
     this.translateService.get(pageTitle).subscribe(title => this.titleService.setTitle(title));
   }
+
+  isAuthenticated(): boolean {
+    return this.accountService.isAuthenticated();
+  }
+
+  hasRole(authority: string): boolean {
+    return this.accountService.hasAnyAuthority(authority);
+  }
 }
