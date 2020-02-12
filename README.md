@@ -4,6 +4,8 @@ This application was generated using JHipster 6.7.0, you can find documentation 
 
 ## Development
 
+**_Before you can start up the Spring Boot service you will need to have a Giphy API development key. The key value should be set to the GIPHY_API_KEY environment variable_**
+
 Before you can build this project, you must install and configure the following dependencies on your machine:
 
 1. [Node.js][]: We use Node to run a development web server and build the project.
