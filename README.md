@@ -1,10 +1,12 @@
 # giphly
 
-This application was generated using JHipster 6.7.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.7.0](https://www.jhipster.tech/documentation-archive/v6.7.0).
-
 ## Development
 
-**_Before you can start up the Spring Boot service you will need to have a Giphy API development key. The key value should be set to the GIPHY_API_KEY environment variable_**
+This git repo contains both a Spring Boot microservice and an Angular UI for a Giphy-like application.
+
+**_Note: Before you can start up the Spring Boot service you will need to have a Giphy API development key. Set the value to the GIPHY_API_KEY environment variable_**
+
+This application was generated using JHipster 6.7.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.7.0](https://www.jhipster.tech/documentation-archive/v6.7.0).
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
 
