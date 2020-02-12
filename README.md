@@ -18,10 +18,11 @@ You will only need to run this command when dependencies change in [package.json
 
 We use npm scripts and [Webpack][] as our build system.
 
-Run the following commands in two separate terminals to create a blissful development experience where your browser
+Run the following commands in **_two separate terminals_** to create a blissful development experience where your browser
 auto-refreshes when files change on your hard drive.
 
     ./gradlew -x webpack
+
     npm start
 
 Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
