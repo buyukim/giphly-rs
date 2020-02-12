@@ -1,6 +1,7 @@
 package com.giphly.service;
 
 import com.giphly.domain.Favorite;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +25,9 @@ public interface FavoriteService {
      * @return the list of entities.
      */
     List<Favorite> findAll();
+
+    @Transactional(readOnly = true)
+    List<Favorite> findAllForLoggedInUser();
 
     /**
      * Get the "id" favorite.
