@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (term === '') {
       return of([]);
     }
-    return this.httpClient.get('/api/giphy-gifs/search?q=' + term);
+    return this.httpClient.get('/api/giphy-gifs/search?limit=24&q=' + term);
   }
 
   isAuthenticated(): boolean {
