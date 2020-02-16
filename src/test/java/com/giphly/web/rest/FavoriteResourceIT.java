@@ -143,10 +143,11 @@ public class FavoriteResourceIT {
         // Get all the favoriteList
         restFavoriteMockMvc.perform(get("/api/favorites?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(favorite.getId().intValue())));
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
+        //TODO: this call now only returns the data for the current user, unless it's a ROLE_ADMIN requesting
+         //   .andExpect(jsonPath("$.[*].id").value(hasItem(favorite.getId().intValue())));
     }
-    
+
     @Test
     @Transactional
     public void getFavorite() throws Exception {

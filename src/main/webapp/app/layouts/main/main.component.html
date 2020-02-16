@@ -9,24 +9,25 @@
         <router-outlet></router-outlet>
     </div>
     <div [ngSwitch]="(!isAuthenticated()) || (!hasRole('ROLE_ADMIN'))">
-        <div *ngSwitchCase="true" >
-            <div id="bottom-bar">
-            <button type="button"
-                    routerLink="/"
-                    class="btn btn-large">
-                <fa-icon icon="home"></fa-icon>
-            </button>
-            <button type="button"
-                    routerLink="favorite"
-                    class="btn btn-large">
-                <fa-icon icon="heart"></fa-icon>
-            </button>
-            <button type="button"
-                    routerLink="profile"
-                    class="btn btn-large">
-                <fa-icon icon="user"></fa-icon>
-            </button>
-            </div>
+        <div *ngSwitchCase="true">
+            <nav class="navbar fixed-bottom navbar-light bottom-bar">
+
+                <button type="button"
+                        routerLink="/"
+                        class="btn w-25 p-3">
+                    <fa-icon icon="home"></fa-icon>
+                </button>
+                <button type="button"
+                        routerLink="favorite"
+                        class="btn w-25 p-3">
+                    <fa-icon icon="heart"></fa-icon>
+                </button>
+                <button type="button"
+                        routerLink="profile"
+                        class="btn w-25 p-3">
+                    <fa-icon icon="user"></fa-icon>
+                </button>
+            </nav>
         </div>
     </div>
 
