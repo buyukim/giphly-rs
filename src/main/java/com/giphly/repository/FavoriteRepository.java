@@ -16,5 +16,4 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
 
     @Query("select favorite from Favorite favorite where favorite.user.login = ?#{principal.username}")
     List<Favorite> findByUserIsCurrentUser();
-
 }

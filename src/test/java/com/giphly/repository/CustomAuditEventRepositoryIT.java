@@ -1,6 +1,7 @@
 package com.giphly.repository;
 
 import com.giphly.GiphlyApp;
+
 import com.giphly.config.Constants;
 import com.giphly.config.audit.AuditEventConverter;
 import com.giphly.domain.PersistentAuditEvent;

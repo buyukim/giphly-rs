@@ -4,6 +4,7 @@ import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
+import { Authority } from 'app/shared/constants/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { ICategory, Category } from 'app/shared/model/category.model';
 import { CategoryService } from './category.service';
@@ -38,7 +39,7 @@ export const categoryRoute: Routes = [
     path: '',
     component: CategoryComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'giphlyApp.category.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -50,7 +51,7 @@ export const categoryRoute: Routes = [
       category: CategoryResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'giphlyApp.category.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -62,7 +63,7 @@ export const categoryRoute: Routes = [
       category: CategoryResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'giphlyApp.category.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +75,7 @@ export const categoryRoute: Routes = [
       category: CategoryResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [Authority.USER],
       pageTitle: 'giphlyApp.category.home.title'
     },
     canActivate: [UserRouteAccessService]

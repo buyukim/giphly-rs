@@ -4,29 +4,25 @@ import com.giphly.GiphlyApp;
 import com.giphly.domain.Category;
 import com.giphly.repository.CategoryRepository;
 import com.giphly.service.CategoryService;
-import com.giphly.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Validator;
-
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.giphly.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.mockito.Mockito.*;
@@ -37,6 +33,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link CategoryResource} REST controller.
  */
 @SpringBootTest(classes = GiphlyApp.class)
+@ExtendWith(MockitoExtension.class)
+@AutoConfigureMockMvc
+@WithMockUser
 public class CategoryResourceIT {
 
     private static final String DEFAULT_TAG = "AAAAAAAAAA";
@@ -55,35 +54,12 @@ public class CategoryResourceIT {
     private CategoryService categoryService;
 
     @Autowired
-    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
-
-    @Autowired
-    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
-
-    @Autowired
-    private ExceptionTranslator exceptionTranslator;
-
-    @Autowired
     private EntityManager em;
 
     @Autowired
-    private Validator validator;
-
     private MockMvc restCategoryMockMvc;
 
     private Category category;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        final CategoryResource categoryResource = new CategoryResource(categoryService);
-        this.restCategoryMockMvc = MockMvcBuilders.standaloneSetup(categoryResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter)
-            .setValidator(validator).build();
-    }
 
     /**
      * Create an entity for this test.
@@ -120,7 +96,7 @@ public class CategoryResourceIT {
 
         // Create the Category
         restCategoryMockMvc.perform(post("/api/categories")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(category)))
             .andExpect(status().isCreated());
 
@@ -141,7 +117,7 @@ public class CategoryResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCategoryMockMvc.perform(post("/api/categories")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(category)))
             .andExpect(status().isBadRequest());
 
@@ -161,7 +137,7 @@ public class CategoryResourceIT {
         // Create the Category, which fails.
 
         restCategoryMockMvc.perform(post("/api/categories")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(category)))
             .andExpect(status().isBadRequest());
 
@@ -185,35 +161,22 @@ public class CategoryResourceIT {
     
     @SuppressWarnings({"unchecked"})
     public void getAllCategoriesWithEagerRelationshipsIsEnabled() throws Exception {
-        CategoryResource categoryResource = new CategoryResource(categoryServiceMock);
         when(categoryServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
-        MockMvc restCategoryMockMvc = MockMvcBuilders.standaloneSetup(categoryResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
-
         restCategoryMockMvc.perform(get("/api/categories?eagerload=true"))
-        .andExpect(status().isOk());
+            .andExpect(status().isOk());
 
         verify(categoryServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @SuppressWarnings({"unchecked"})
     public void getAllCategoriesWithEagerRelationshipsIsNotEnabled() throws Exception {
-        CategoryResource categoryResource = new CategoryResource(categoryServiceMock);
-            when(categoryServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-            MockMvc restCategoryMockMvc = MockMvcBuilders.standaloneSetup(categoryResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+        when(categoryServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restCategoryMockMvc.perform(get("/api/categories?eagerload=true"))
-        .andExpect(status().isOk());
+            .andExpect(status().isOk());
 
-            verify(categoryServiceMock, times(1)).findAllWithEagerRelationships(any());
+        verify(categoryServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @Test
@@ -254,7 +217,7 @@ public class CategoryResourceIT {
             .tag(UPDATED_TAG);
 
         restCategoryMockMvc.perform(put("/api/categories")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedCategory)))
             .andExpect(status().isOk());
 
@@ -274,7 +237,7 @@ public class CategoryResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restCategoryMockMvc.perform(put("/api/categories")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(category)))
             .andExpect(status().isBadRequest());
 
@@ -293,7 +256,7 @@ public class CategoryResourceIT {
 
         // Delete the category
         restCategoryMockMvc.perform(delete("/api/categories/{id}", category.getId())
-            .accept(TestUtil.APPLICATION_JSON))
+            .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
