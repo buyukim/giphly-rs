@@ -1,0 +1,11 @@
+version: '2'
+services:
+  giphly-postgresql:
+    image: postgres:12.1
+    # volumes:
+    #     - ~/volumes/jhipster/giphly/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=giphly
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
