@@ -26,5 +26,4 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     @Query("select category from Category category left join fetch category.gifs where category.id =:id")
     Optional<Category> findOneWithEagerRelationships(@Param("id") Long id);
-
 }

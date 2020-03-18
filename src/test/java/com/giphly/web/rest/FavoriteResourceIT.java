@@ -4,25 +4,19 @@ import com.giphly.GiphlyApp;
 import com.giphly.domain.Favorite;
 import com.giphly.repository.FavoriteRepository;
 import com.giphly.service.FavoriteService;
-import com.giphly.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Validator;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static com.giphly.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -32,6 +26,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link FavoriteResource} REST controller.
  */
 @SpringBootTest(classes = GiphlyApp.class)
+
+@AutoConfigureMockMvc
+@WithMockUser
 public class FavoriteResourceIT {
 
     @Autowired
@@ -41,35 +38,12 @@ public class FavoriteResourceIT {
     private FavoriteService favoriteService;
 
     @Autowired
-    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
-
-    @Autowired
-    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
-
-    @Autowired
-    private ExceptionTranslator exceptionTranslator;
-
-    @Autowired
     private EntityManager em;
 
     @Autowired
-    private Validator validator;
-
     private MockMvc restFavoriteMockMvc;
 
     private Favorite favorite;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        final FavoriteResource favoriteResource = new FavoriteResource(favoriteService);
-        this.restFavoriteMockMvc = MockMvcBuilders.standaloneSetup(favoriteResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter)
-            .setValidator(validator).build();
-    }
 
     /**
      * Create an entity for this test.
@@ -104,7 +78,7 @@ public class FavoriteResourceIT {
 
         // Create the Favorite
         restFavoriteMockMvc.perform(post("/api/favorites")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(favorite)))
             .andExpect(status().isCreated());
 
@@ -124,7 +98,7 @@ public class FavoriteResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restFavoriteMockMvc.perform(post("/api/favorites")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(favorite)))
             .andExpect(status().isBadRequest());
 
@@ -183,7 +157,7 @@ public class FavoriteResourceIT {
         em.detach(updatedFavorite);
 
         restFavoriteMockMvc.perform(put("/api/favorites")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedFavorite)))
             .andExpect(status().isOk());
 
@@ -202,7 +176,7 @@ public class FavoriteResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restFavoriteMockMvc.perform(put("/api/favorites")
-            .contentType(TestUtil.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(favorite)))
             .andExpect(status().isBadRequest());
 
@@ -221,7 +195,7 @@ public class FavoriteResourceIT {
 
         // Delete the favorite
         restFavoriteMockMvc.perform(delete("/api/favorites/{id}", favorite.getId())
-            .accept(TestUtil.APPLICATION_JSON))
+            .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
