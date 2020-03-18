@@ -4,6 +4,7 @@ import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router
 import { Observable, of, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
+import { Authority } from 'app/shared/constants/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { IGif, Gif } from 'app/shared/model/gif.model';
 import { GifService } from './gif.service';
@@ -38,8 +39,8 @@ export const gifRoute: Routes = [
     path: '',
     component: GifComponent,
     data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'Gifs'
+      authorities: [Authority.USER],
+      pageTitle: 'giphlyApp.gif.home.title'
     },
     canActivate: [UserRouteAccessService]
   },
@@ -50,8 +51,8 @@ export const gifRoute: Routes = [
       gif: GifResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'Gifs'
+      authorities: [Authority.USER],
+      pageTitle: 'giphlyApp.gif.home.title'
     },
     canActivate: [UserRouteAccessService]
   },
@@ -62,8 +63,8 @@ export const gifRoute: Routes = [
       gif: GifResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'Gifs'
+      authorities: [Authority.USER],
+      pageTitle: 'giphlyApp.gif.home.title'
     },
     canActivate: [UserRouteAccessService]
   },
@@ -74,8 +75,8 @@ export const gifRoute: Routes = [
       gif: GifResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'Gifs'
+      authorities: [Authority.USER],
+      pageTitle: 'giphlyApp.gif.home.title'
     },
     canActivate: [UserRouteAccessService]
   }
