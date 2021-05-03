@@ -1,24 +1,23 @@
 package com.giphly.repository;
 
 import com.giphly.domain.Category;
-
+import java.util.List;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
 /**
- * Spring Data  repository for the Category entity.
+ * Spring Data SQL repository for the Category entity.
  */
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-
-    @Query(value = "select distinct category from Category category left join fetch category.gifs",
-        countQuery = "select count(distinct category) from Category category")
+    @Query(
+        value = "select distinct category from Category category left join fetch category.gifs",
+        countQuery = "select count(distinct category) from Category category"
+    )
     Page<Category> findAllWithEagerRelationships(Pageable pageable);
 
     @Query("select distinct category from Category category left join fetch category.gifs")

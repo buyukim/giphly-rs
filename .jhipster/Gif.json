@@ -1,32 +1,30 @@
 {
-    "name": "Gif",
-    "fields": [
-        {
-            "fieldName": "giphyGifId",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        }
-    ],
-    "relationships": [
-        {
-            "relationshipType": "many-to-many",
-            "otherEntityName": "category",
-            "otherEntityRelationshipName": "gif",
-            "relationshipName": "category",
-            "otherEntityField": "id",
-            "ownerSide": false
-        }
-    ],
-    "changelogDate": "20200210073500",
-    "entityTableName": "gif",
-    "dto": "no",
-    "pagination": "no",
-    "service": "serviceImpl",
-    "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "readOnly": false,
-    "clientRootFolder": "",
-    "applications": "*"
+  "name": "Gif",
+  "fields": [
+    {
+      "fieldName": "giphyGifId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "category",
+      "otherEntityRelationshipName": "gif",
+      "relationshipName": "category",
+      "otherEntityField": "id",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20200210073500",
+  "entityTableName": "gif",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "clientRootFolder": "",
+  "applications": "*"
 }

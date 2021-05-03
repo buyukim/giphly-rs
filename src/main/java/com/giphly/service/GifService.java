@@ -1,7 +1,6 @@
 package com.giphly.service;
 
 import com.giphly.domain.Gif;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +8,6 @@ import java.util.Optional;
  * Service Interface for managing {@link Gif}.
  */
 public interface GifService {
-
     /**
      * Save a gif.
      *
@@ -17,6 +15,14 @@ public interface GifService {
      * @return the persisted entity.
      */
     Gif save(Gif gif);
+
+    /**
+     * Partially updates a gif.
+     *
+     * @param gif the entity to update partially.
+     * @return the persisted entity.
+     */
+    Optional<Gif> partialUpdate(Gif gif);
 
     /**
      * Get all the gifs.
