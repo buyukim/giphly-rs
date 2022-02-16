@@ -1,5 +1,9 @@
 {
-  "name": "Category",
+  "applications": "*",
+  "changelogDate": "20200210073600",
+  "clientRootFolder": "",
+  "dto": "no",
+  "entityTableName": "category",
   "fields": [
     {
       "fieldName": "tag",
@@ -7,24 +11,20 @@
       "fieldValidateRules": ["required"]
     }
   ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Category",
+  "pagination": "no",
+  "readOnly": false,
   "relationships": [
     {
-      "relationshipType": "many-to-many",
+      "otherEntityField": "id",
       "otherEntityName": "gif",
       "otherEntityRelationshipName": "category",
+      "ownerSide": true,
       "relationshipName": "gif",
-      "otherEntityField": "id",
-      "ownerSide": true
+      "relationshipType": "many-to-many"
     }
   ],
-  "changelogDate": "20200210073600",
-  "entityTableName": "category",
-  "dto": "no",
-  "pagination": "no",
-  "service": "serviceImpl",
-  "jpaMetamodelFiltering": false,
-  "fluentMethods": true,
-  "readOnly": false,
-  "clientRootFolder": "",
-  "applications": "*"
+  "service": "serviceImpl"
 }
