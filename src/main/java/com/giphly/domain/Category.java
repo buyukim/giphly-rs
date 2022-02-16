@@ -22,6 +22,7 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
+    @Column(name = "id")
     private Long id;
 
     @NotNull
@@ -29,27 +30,28 @@ public class Category implements Serializable {
     private String tag;
 
     @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinTable(
         name = "rel_category__gif",
         joinColumns = @JoinColumn(name = "category_id"),
         inverseJoinColumns = @JoinColumn(name = "gif_id")
     )
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "categories" }, allowSetters = true)
     private Set<Gif> gifs = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
     public Long getId() {
-        return id;
+        return this.id;
+    }
+
+    public Category id(Long id) {
+        this.setId(id);
+        return this;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Category id(Long id) {
-        this.id = id;
-        return this;
     }
 
     public String getTag() {
@@ -57,7 +59,7 @@ public class Category implements Serializable {
     }
 
     public Category tag(String tag) {
-        this.tag = tag;
+        this.setTag(tag);
         return this;
     }
 
@@ -67,6 +69,10 @@ public class Category implements Serializable {
 
     public Set<Gif> getGifs() {
         return this.gifs;
+    }
+
+    public void setGifs(Set<Gif> gifs) {
+        this.gifs = gifs;
     }
 
     public Category gifs(Set<Gif> gifs) {
@@ -84,10 +90,6 @@ public class Category implements Serializable {
         this.gifs.remove(gif);
         gif.getCategories().remove(this);
         return this;
-    }
-
-    public void setGifs(Set<Gif> gifs) {
-        this.gifs = gifs;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

@@ -37,11 +37,9 @@ public class FavoriteServiceImpl implements FavoriteService {
 
         return favoriteRepository
             .findById(favorite.getId())
-            .map(
-                existingFavorite -> {
-                    return existingFavorite;
-                }
-            )
+            .map(existingFavorite -> {
+                return existingFavorite;
+            })
             .map(favoriteRepository::save);
     }
 

@@ -19,6 +19,7 @@ public class Favorite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne
@@ -29,21 +30,26 @@ public class Favorite implements Serializable {
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
     public Long getId() {
-        return id;
+        return this.id;
+    }
+
+    public Favorite id(Long id) {
+        this.setId(id);
+        return this;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Favorite id(Long id) {
-        this.id = id;
-        return this;
-    }
-
     public Gif getGif() {
         return this.gif;
+    }
+
+    public void setGif(Gif gif) {
+        this.gif = gif;
     }
 
     public Favorite gif(Gif gif) {
@@ -51,21 +57,17 @@ public class Favorite implements Serializable {
         return this;
     }
 
-    public void setGif(Gif gif) {
-        this.gif = gif;
-    }
-
     public User getUser() {
         return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Favorite user(User user) {
         this.setUser(user);
         return this;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

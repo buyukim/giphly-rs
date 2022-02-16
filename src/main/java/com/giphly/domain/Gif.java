@@ -22,6 +22,7 @@ public class Gif implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
+    @Column(name = "id")
     private Long id;
 
     @NotNull
@@ -34,17 +35,18 @@ public class Gif implements Serializable {
     private Set<Category> categories = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
     public Long getId() {
-        return id;
+        return this.id;
+    }
+
+    public Gif id(Long id) {
+        this.setId(id);
+        return this;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Gif id(Long id) {
-        this.id = id;
-        return this;
     }
 
     public String getGiphyGifId() {
@@ -52,7 +54,7 @@ public class Gif implements Serializable {
     }
 
     public Gif giphyGifId(String giphyGifId) {
-        this.giphyGifId = giphyGifId;
+        this.setGiphyGifId(giphyGifId);
         return this;
     }
 
@@ -62,6 +64,16 @@ public class Gif implements Serializable {
 
     public Set<Category> getCategories() {
         return this.categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        if (this.categories != null) {
+            this.categories.forEach(i -> i.removeGif(this));
+        }
+        if (categories != null) {
+            categories.forEach(i -> i.addGif(this));
+        }
+        this.categories = categories;
     }
 
     public Gif categories(Set<Category> categories) {
@@ -79,16 +91,6 @@ public class Gif implements Serializable {
         this.categories.remove(category);
         category.getGifs().remove(this);
         return this;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        if (this.categories != null) {
-            this.categories.forEach(i -> i.removeGif(this));
-        }
-        if (categories != null) {
-            categories.forEach(i -> i.addGif(this));
-        }
-        this.categories = categories;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
