@@ -51,6 +51,7 @@ public class GifServiceImpl implements GifService {
         return gifRepository.findAll();
     }
 
+
     /**
      * Get one gif by id.
      *
@@ -72,6 +73,7 @@ public class GifServiceImpl implements GifService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Gif : {}", id);
+
         gifRepository.deleteById(id);
     }
 }

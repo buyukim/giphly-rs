@@ -40,44 +40,44 @@ export const favoriteRoute: Routes = [
     component: FavoriteComponent,
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.favorite.home.title'
+      pageTitle: 'giphlyApp.favorite.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
     component: FavoriteDetailComponent,
     resolve: {
-      favorite: FavoriteResolve
+      favorite: FavoriteResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.favorite.home.title'
+      pageTitle: 'giphlyApp.favorite.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',
     component: FavoriteUpdateComponent,
     resolve: {
-      favorite: FavoriteResolve
+      favorite: FavoriteResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.favorite.home.title'
+      pageTitle: 'giphlyApp.favorite.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/edit',
     component: FavoriteUpdateComponent,
     resolve: {
-      favorite: FavoriteResolve
+      favorite: FavoriteResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.favorite.home.title'
+      pageTitle: 'giphlyApp.favorite.home.title',
     },
-    canActivate: [UserRouteAccessService]
-  }
+    canActivate: [UserRouteAccessService],
+  },
 ];

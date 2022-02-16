@@ -11,6 +11,6 @@ import { gifRoute } from './gif.route';
 @NgModule({
   imports: [GiphlySharedModule, RouterModule.forChild(gifRoute)],
   declarations: [GifComponent, GifDetailComponent, GifUpdateComponent, GifDeleteDialogComponent],
-  entryComponents: [GifDeleteDialogComponent]
+  entryComponents: [GifDeleteDialogComponent],
 })
 export class GiphlyGifModule {}

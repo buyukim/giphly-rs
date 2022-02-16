@@ -6,7 +6,7 @@ import { IFavorite } from 'app/shared/model/favorite.model';
 import { FavoriteService } from './favorite.service';
 
 @Component({
-  templateUrl: './favorite-delete-dialog.component.html'
+  templateUrl: './favorite-delete-dialog.component.html',
 })
 export class FavoriteDeleteDialogComponent {
   favorite?: IFavorite;

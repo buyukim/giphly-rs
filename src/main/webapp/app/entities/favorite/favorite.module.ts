@@ -11,6 +11,6 @@ import { favoriteRoute } from './favorite.route';
 @NgModule({
   imports: [GiphlySharedModule, RouterModule.forChild(favoriteRoute)],
   declarations: [FavoriteComponent, FavoriteDetailComponent, FavoriteUpdateComponent, FavoriteDeleteDialogComponent],
-  entryComponents: [FavoriteDeleteDialogComponent]
+  entryComponents: [FavoriteDeleteDialogComponent],
 })
 export class GiphlyFavoriteModule {}

@@ -18,7 +18,7 @@ describe('Component Tests', () => {
       TestBed.configureTestingModule({
         imports: [GiphlyTestModule],
         declarations: [FavoriteUpdateComponent],
-        providers: [FormBuilder]
+        providers: [FormBuilder],
       })
         .overrideTemplate(FavoriteUpdateComponent, '')
         .compileComponents();

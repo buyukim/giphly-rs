@@ -10,7 +10,7 @@ import { FavoriteDeleteDialogComponent } from './favorite-delete-dialog.componen
 
 @Component({
   selector: 'jhi-favorite',
-  templateUrl: './favorite.component.html'
+  templateUrl: './favorite.component.html',
 })
 export class FavoriteComponent implements OnInit, OnDestroy {
   favorites?: IFavorite[];

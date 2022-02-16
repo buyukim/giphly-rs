@@ -23,9 +23,9 @@ import { ErrorComponent } from './layouts/error/error.component';
     GiphlyHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     GiphlyEntityModule,
-    GiphlyAppRoutingModule
+    GiphlyAppRoutingModule,
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
-  bootstrap: [MainComponent]
+  bootstrap: [MainComponent],
 })
 export class GiphlyAppModule {}

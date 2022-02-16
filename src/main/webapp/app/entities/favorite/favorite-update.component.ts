@@ -16,7 +16,7 @@ type SelectableEntity = IGif | IUser;
 
 @Component({
   selector: 'jhi-favorite-update',
-  templateUrl: './favorite-update.component.html'
+  templateUrl: './favorite-update.component.html',
 })
 export class FavoriteUpdateComponent implements OnInit {
   isSaving = false;
@@ -26,7 +26,7 @@ export class FavoriteUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     gif: [],
-    user: []
+    user: [],
   });
 
   constructor(
@@ -51,7 +51,7 @@ export class FavoriteUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: favorite.id,
       gif: favorite.gif,
-      user: favorite.user
+      user: favorite.user,
     });
   }
 
@@ -74,7 +74,7 @@ export class FavoriteUpdateComponent implements OnInit {
       ...new Favorite(),
       id: this.editForm.get(['id'])!.value,
       gif: this.editForm.get(['gif'])!.value,
-      user: this.editForm.get(['user'])!.value
+      user: this.editForm.get(['user'])!.value,
     };
   }
 

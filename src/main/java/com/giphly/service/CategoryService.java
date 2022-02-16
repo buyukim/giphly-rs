@@ -35,6 +35,7 @@ public interface CategoryService {
      */
     Page<Category> findAllWithEagerRelationships(Pageable pageable);
 
+
     /**
      * Get the "id" category.
      *

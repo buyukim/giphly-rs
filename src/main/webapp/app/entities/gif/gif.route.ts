@@ -40,44 +40,44 @@ export const gifRoute: Routes = [
     component: GifComponent,
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.gif.home.title'
+      pageTitle: 'giphlyApp.gif.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
     component: GifDetailComponent,
     resolve: {
-      gif: GifResolve
+      gif: GifResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.gif.home.title'
+      pageTitle: 'giphlyApp.gif.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',
     component: GifUpdateComponent,
     resolve: {
-      gif: GifResolve
+      gif: GifResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.gif.home.title'
+      pageTitle: 'giphlyApp.gif.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/edit',
     component: GifUpdateComponent,
     resolve: {
-      gif: GifResolve
+      gif: GifResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.gif.home.title'
+      pageTitle: 'giphlyApp.gif.home.title',
     },
-    canActivate: [UserRouteAccessService]
-  }
+    canActivate: [UserRouteAccessService],
+  },
 ];

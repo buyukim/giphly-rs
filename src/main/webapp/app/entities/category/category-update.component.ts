@@ -12,7 +12,7 @@ import { GifService } from 'app/entities/gif/gif.service';
 
 @Component({
   selector: 'jhi-category-update',
-  templateUrl: './category-update.component.html'
+  templateUrl: './category-update.component.html',
 })
 export class CategoryUpdateComponent implements OnInit {
   isSaving = false;
@@ -21,7 +21,7 @@ export class CategoryUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     tag: [null, [Validators.required]],
-    gifs: []
+    gifs: [],
   });
 
   constructor(
@@ -43,7 +43,7 @@ export class CategoryUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: category.id,
       tag: category.tag,
-      gifs: category.gifs
+      gifs: category.gifs,
     });
   }
 
@@ -66,7 +66,7 @@ export class CategoryUpdateComponent implements OnInit {
       ...new Category(),
       id: this.editForm.get(['id'])!.value,
       tag: this.editForm.get(['tag'])!.value,
-      gifs: this.editForm.get(['gifs'])!.value
+      gifs: this.editForm.get(['gifs'])!.value,
     };
   }
 

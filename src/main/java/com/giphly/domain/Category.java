@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +15,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "category")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,13 +30,13 @@ public class Category implements Serializable {
     private String tag;
 
     @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JoinTable(name = "category_gif",
                joinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "gif_id", referencedColumnName = "id"))
     private Set<Gif> gifs = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -83,7 +82,7 @@ public class Category implements Serializable {
     public void setGifs(Set<Gif> gifs) {
         this.gifs = gifs;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -101,6 +100,7 @@ public class Category implements Serializable {
         return 31;
     }
 
+    // prettier-ignore
     @Override
     public String toString() {
         return "Category{" +

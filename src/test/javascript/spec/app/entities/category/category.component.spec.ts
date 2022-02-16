@@ -16,7 +16,7 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [GiphlyTestModule],
-        declarations: [CategoryComponent]
+        declarations: [CategoryComponent],
       })
         .overrideTemplate(CategoryComponent, '')
         .compileComponents();
@@ -33,7 +33,7 @@ describe('Component Tests', () => {
         of(
           new HttpResponse({
             body: [new Category(123)],
-            headers
+            headers,
           })
         )
       );

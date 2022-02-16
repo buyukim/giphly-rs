@@ -26,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link GifResource} REST controller.
  */
 @SpringBootTest(classes = GiphlyApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class GifResourceIT {
@@ -80,7 +79,6 @@ public class GifResourceIT {
     @Transactional
     public void createGif() throws Exception {
         int databaseSizeBeforeCreate = gifRepository.findAll().size();
-
         // Create the Gif
         restGifMockMvc.perform(post("/api/gifs")
             .contentType(MediaType.APPLICATION_JSON)
@@ -123,6 +121,7 @@ public class GifResourceIT {
 
         // Create the Gif, which fails.
 
+
         restGifMockMvc.perform(post("/api/gifs")
             .contentType(MediaType.APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(gif)))
@@ -159,7 +158,6 @@ public class GifResourceIT {
             .andExpect(jsonPath("$.id").value(gif.getId().intValue()))
             .andExpect(jsonPath("$.giphyGifId").value(DEFAULT_GIPHY_GIF_ID));
     }
-
     @Test
     @Transactional
     public void getNonExistingGif() throws Exception {
@@ -199,8 +197,6 @@ public class GifResourceIT {
     @Transactional
     public void updateNonExistingGif() throws Exception {
         int databaseSizeBeforeUpdate = gifRepository.findAll().size();
-
-        // Create the Gif
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restGifMockMvc.perform(put("/api/gifs")

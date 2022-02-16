@@ -6,7 +6,7 @@ import { IGif } from 'app/shared/model/gif.model';
 import { GifService } from './gif.service';
 
 @Component({
-  templateUrl: './gif-delete-dialog.component.html'
+  templateUrl: './gif-delete-dialog.component.html',
 })
 export class GifDeleteDialogComponent {
   gif?: IGif;

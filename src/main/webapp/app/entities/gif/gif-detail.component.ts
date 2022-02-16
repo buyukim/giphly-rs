@@ -5,7 +5,7 @@ import { IGif } from 'app/shared/model/gif.model';
 
 @Component({
   selector: 'jhi-gif-detail',
-  templateUrl: './gif-detail.component.html'
+  templateUrl: './gif-detail.component.html',
 })
 export class GifDetailComponent implements OnInit {
   gif: IGif | null = null;

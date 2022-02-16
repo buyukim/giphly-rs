@@ -1,0 +1,23 @@
+{
+  "giphlyApp": {
+    "gif": {
+      "home": {
+        "title": "Gifs",
+        "createLabel": "Create a new Gif",
+        "createOrEditLabel": "Create or edit a Gif",
+        "notFound": "No Gifs found"
+      },
+      "created": "A new Gif is created with identifier {{ param }}",
+      "updated": "A Gif is updated with identifier {{ param }}",
+      "deleted": "A Gif is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Gif {{ id }}?"
+      },
+      "detail": {
+        "title": "Gif"
+      },
+      "giphyGifId": "Giphy Gif Id",
+      "category": "Category"
+    }
+  }
+}

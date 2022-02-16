@@ -5,7 +5,7 @@ import { IFavorite } from 'app/shared/model/favorite.model';
 
 @Component({
   selector: 'jhi-favorite-detail',
-  templateUrl: './favorite-detail.component.html'
+  templateUrl: './favorite-detail.component.html',
 })
 export class FavoriteDetailComponent implements OnInit {
   favorite: IFavorite | null = null;

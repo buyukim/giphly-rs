@@ -53,6 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepository.findAllWithEagerRelationships();
     }
 
+
     /**
      * Get all the categories with eager load of many-to-many relationships.
      *
@@ -83,6 +84,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Category : {}", id);
+
         categoryRepository.deleteById(id);
     }
 }

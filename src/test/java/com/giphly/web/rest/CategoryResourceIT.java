@@ -93,7 +93,6 @@ public class CategoryResourceIT {
     @Transactional
     public void createCategory() throws Exception {
         int databaseSizeBeforeCreate = categoryRepository.findAll().size();
-
         // Create the Category
         restCategoryMockMvc.perform(post("/api/categories")
             .contentType(MediaType.APPLICATION_JSON)
@@ -135,6 +134,7 @@ public class CategoryResourceIT {
         category.setTag(null);
 
         // Create the Category, which fails.
+
 
         restCategoryMockMvc.perform(post("/api/categories")
             .contentType(MediaType.APPLICATION_JSON)
@@ -192,7 +192,6 @@ public class CategoryResourceIT {
             .andExpect(jsonPath("$.id").value(category.getId().intValue()))
             .andExpect(jsonPath("$.tag").value(DEFAULT_TAG));
     }
-
     @Test
     @Transactional
     public void getNonExistingCategory() throws Exception {
@@ -232,8 +231,6 @@ public class CategoryResourceIT {
     @Transactional
     public void updateNonExistingCategory() throws Exception {
         int databaseSizeBeforeUpdate = categoryRepository.findAll().size();
-
-        // Create the Category
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restCategoryMockMvc.perform(put("/api/categories")

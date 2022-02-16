@@ -16,7 +16,7 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [GiphlyTestModule],
-        declarations: [FavoriteComponent]
+        declarations: [FavoriteComponent],
       })
         .overrideTemplate(FavoriteComponent, '')
         .compileComponents();
@@ -33,7 +33,7 @@ describe('Component Tests', () => {
         of(
           new HttpResponse({
             body: [new Favorite(123)],
-            headers
+            headers,
           })
         )
       );

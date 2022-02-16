@@ -29,6 +29,7 @@ public interface FavoriteService {
     @Transactional(readOnly = true)
     List<Favorite> findAllForLoggedInUser();
 
+
     /**
      * Get the "id" favorite.
      *

@@ -111,6 +111,7 @@ public class GifResource {
     @DeleteMapping("/gifs/{id}")
     public ResponseEntity<Void> deleteGif(@PathVariable Long id) {
         log.debug("REST request to delete Gif : {}", id);
+
         gifService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }

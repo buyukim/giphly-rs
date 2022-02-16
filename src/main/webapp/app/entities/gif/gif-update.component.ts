@@ -10,14 +10,14 @@ import { GifService } from './gif.service';
 
 @Component({
   selector: 'jhi-gif-update',
-  templateUrl: './gif-update.component.html'
+  templateUrl: './gif-update.component.html',
 })
 export class GifUpdateComponent implements OnInit {
   isSaving = false;
 
   editForm = this.fb.group({
     id: [],
-    giphyGifId: [null, [Validators.required]]
+    giphyGifId: [null, [Validators.required]],
   });
 
   constructor(protected gifService: GifService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -31,7 +31,7 @@ export class GifUpdateComponent implements OnInit {
   updateForm(gif: IGif): void {
     this.editForm.patchValue({
       id: gif.id,
-      giphyGifId: gif.giphyGifId
+      giphyGifId: gif.giphyGifId,
     });
   }
 
@@ -53,7 +53,7 @@ export class GifUpdateComponent implements OnInit {
     return {
       ...new Gif(),
       id: this.editForm.get(['id'])!.value,
-      giphyGifId: this.editForm.get(['giphyGifId'])!.value
+      giphyGifId: this.editForm.get(['giphyGifId'])!.value,
     };
   }
 

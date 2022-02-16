@@ -26,7 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link FavoriteResource} REST controller.
  */
 @SpringBootTest(classes = GiphlyApp.class)
-
 @AutoConfigureMockMvc
 @WithMockUser
 public class FavoriteResourceIT {
@@ -75,7 +74,6 @@ public class FavoriteResourceIT {
     @Transactional
     public void createFavorite() throws Exception {
         int databaseSizeBeforeCreate = favoriteRepository.findAll().size();
-
         // Create the Favorite
         restFavoriteMockMvc.perform(post("/api/favorites")
             .contentType(MediaType.APPLICATION_JSON)
@@ -134,7 +132,6 @@ public class FavoriteResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(favorite.getId().intValue()));
     }
-
     @Test
     @Transactional
     public void getNonExistingFavorite() throws Exception {
@@ -171,8 +168,6 @@ public class FavoriteResourceIT {
     @Transactional
     public void updateNonExistingFavorite() throws Exception {
         int databaseSizeBeforeUpdate = favoriteRepository.findAll().size();
-
-        // Create the Favorite
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restFavoriteMockMvc.perform(put("/api/favorites")

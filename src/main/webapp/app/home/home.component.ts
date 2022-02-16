@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'jhi-home',
   templateUrl: './home.component.html',
-  styleUrls: ['home.scss']
+  styleUrls: ['home.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;

@@ -51,6 +51,7 @@ public class FavoriteServiceImpl implements FavoriteService {
         return favoriteRepository.findAll();
     }
 
+
     /**
      * Get all the favorites for the currently logged in user
      *
@@ -84,6 +85,7 @@ public class FavoriteServiceImpl implements FavoriteService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Favorite : {}", id);
+
         favoriteRepository.deleteById(id);
     }
 }

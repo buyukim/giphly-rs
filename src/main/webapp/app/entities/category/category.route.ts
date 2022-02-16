@@ -40,44 +40,44 @@ export const categoryRoute: Routes = [
     component: CategoryComponent,
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.category.home.title'
+      pageTitle: 'giphlyApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/view',
     component: CategoryDetailComponent,
     resolve: {
-      category: CategoryResolve
+      category: CategoryResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.category.home.title'
+      pageTitle: 'giphlyApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: 'new',
     component: CategoryUpdateComponent,
     resolve: {
-      category: CategoryResolve
+      category: CategoryResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.category.home.title'
+      pageTitle: 'giphlyApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService],
   },
   {
     path: ':id/edit',
     component: CategoryUpdateComponent,
     resolve: {
-      category: CategoryResolve
+      category: CategoryResolve,
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'giphlyApp.category.home.title'
+      pageTitle: 'giphlyApp.category.home.title',
     },
-    canActivate: [UserRouteAccessService]
-  }
+    canActivate: [UserRouteAccessService],
+  },
 ];

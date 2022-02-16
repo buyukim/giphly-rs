@@ -25,6 +25,7 @@ public interface GifService {
      */
     List<Gif> findAll();
 
+
     /**
      * Get the "id" gif.
      *

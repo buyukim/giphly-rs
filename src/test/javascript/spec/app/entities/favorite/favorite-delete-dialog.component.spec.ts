@@ -20,7 +20,7 @@ describe('Component Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [GiphlyTestModule],
-        declarations: [FavoriteDeleteDialogComponent]
+        declarations: [FavoriteDeleteDialogComponent],
       })
         .overrideTemplate(FavoriteDeleteDialogComponent, '')
         .compileComponents();

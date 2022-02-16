@@ -10,7 +10,7 @@ import { GifDeleteDialogComponent } from './gif-delete-dialog.component';
 
 @Component({
   selector: 'jhi-gif',
-  templateUrl: './gif.component.html'
+  templateUrl: './gif.component.html',
 })
 export class GifComponent implements OnInit, OnDestroy {
   gifs?: IGif[];

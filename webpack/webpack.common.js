@@ -11,7 +11,7 @@ module.exports = (options) => ({
     resolve: {
         extensions: ['.ts', '.js'],
         modules: ['node_modules'],
-        mainFields: [ 'es2015', 'browser', 'module', 'main'],
+        mainFields: ['browser', 'module', 'main'],
         alias: utils.mapTypescriptAliasToWebpackAlias()
     },
     stats: {
@@ -27,13 +27,14 @@ module.exports = (options) => ({
                 test: /\.html$/,
                 loader: 'html-loader',
                 options: {
-                    minimize: true,
-                    caseSensitive: true,
-                    removeAttributeQuotes:false,
-                    minifyJS:false,
-                    minifyCSS:false
+                    minimize: {
+                        caseSensitive: true,
+                        removeAttributeQuotes:false,
+                        minifyJS:false,
+                        minifyCSS:false
+                    }
                 },
-                exclude: /(src\/main\/webapp\/index.html)/
+                exclude: utils.root('src/main/webapp/index.html')
             },
             {
                 test: /\.(jpe?g|png|gif|svg|woff2?|ttf|eot)$/i,
@@ -87,7 +88,7 @@ module.exports = (options) => ({
             output: {
                 groupBy: [
                     { pattern: "./src/main/webapp/i18n/en/*.json", fileName: "./i18n/en.json" },
-                    { pattern: "./src/main/webapp/i18n/es/*.json", fileName: "./i18n/es.json" }
+                    { pattern: "./src/main/webapp/i18n/fr/*.json", fileName: "./i18n/fr.json" }
                     // jhipster-needle-i18n-language-webpack - JHipster will add/remove languages in this array
                 ]
             }
