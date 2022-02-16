@@ -10,7 +10,7 @@ import { FavoriteService } from '../service/favorite.service';
 export class FavoriteDeleteDialogComponent {
   favorite?: IFavorite;
 
-  constructor(protected favoriteService: FavoriteService, public activeModal: NgbActiveModal) {}
+  constructor(protected favoriteService: FavoriteService, protected activeModal: NgbActiveModal) {}
 
   cancel(): void {
     this.activeModal.dismiss();

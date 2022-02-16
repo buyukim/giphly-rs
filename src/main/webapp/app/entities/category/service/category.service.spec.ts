@@ -142,7 +142,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Category to an array', () => {
-          const categoryArray: ICategory[] = [{ id: 123 }, { id: 456 }, { id: 15449 }];
+          const categoryArray: ICategory[] = [{ id: 123 }, { id: 456 }, { id: 75474 }];
           const categoryCollection: ICategory[] = [{ id: 123 }];
           expectedResult = service.addCategoryToCollectionIfMissing(categoryCollection, ...categoryArray);
           expect(expectedResult).toHaveLength(3);
@@ -162,6 +162,12 @@ describe('Service Tests', () => {
           expectedResult = service.addCategoryToCollectionIfMissing([], null, category, undefined);
           expect(expectedResult).toHaveLength(1);
           expect(expectedResult).toContain(category);
+        });
+
+        it('should return initial array if no Category is added', () => {
+          const categoryCollection: ICategory[] = [{ id: 123 }];
+          expectedResult = service.addCategoryToCollectionIfMissing(categoryCollection, undefined, null);
+          expect(expectedResult).toEqual(categoryCollection);
         });
       });
     });

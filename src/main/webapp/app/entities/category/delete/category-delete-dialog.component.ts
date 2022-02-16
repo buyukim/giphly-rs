@@ -10,7 +10,7 @@ import { CategoryService } from '../service/category.service';
 export class CategoryDeleteDialogComponent {
   category?: ICategory;
 
-  constructor(protected categoryService: CategoryService, public activeModal: NgbActiveModal) {}
+  constructor(protected categoryService: CategoryService, protected activeModal: NgbActiveModal) {}
 
   cancel(): void {
     this.activeModal.dismiss();

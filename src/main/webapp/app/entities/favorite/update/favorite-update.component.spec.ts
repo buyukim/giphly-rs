@@ -47,14 +47,14 @@ describe('Component Tests', () => {
     describe('ngOnInit', () => {
       it('Should call Gif query and add missing value', () => {
         const favorite: IFavorite = { id: 456 };
-        const gif: IGif = { id: 77581 };
+        const gif: IGif = { id: 78242 };
         favorite.gif = gif;
 
-        const gifCollection: IGif[] = [{ id: 13809 }];
-        spyOn(gifService, 'query').and.returnValue(of(new HttpResponse({ body: gifCollection })));
+        const gifCollection: IGif[] = [{ id: 48089 }];
+        jest.spyOn(gifService, 'query').mockReturnValue(of(new HttpResponse({ body: gifCollection })));
         const additionalGifs = [gif];
         const expectedCollection: IGif[] = [...additionalGifs, ...gifCollection];
-        spyOn(gifService, 'addGifToCollectionIfMissing').and.returnValue(expectedCollection);
+        jest.spyOn(gifService, 'addGifToCollectionIfMissing').mockReturnValue(expectedCollection);
 
         activatedRoute.data = of({ favorite });
         comp.ngOnInit();
@@ -66,14 +66,14 @@ describe('Component Tests', () => {
 
       it('Should call User query and add missing value', () => {
         const favorite: IFavorite = { id: 456 };
-        const user: IUser = { id: 87926 };
+        const user: IUser = { id: 70170 };
         favorite.user = user;
 
-        const userCollection: IUser[] = [{ id: 47918 }];
-        spyOn(userService, 'query').and.returnValue(of(new HttpResponse({ body: userCollection })));
+        const userCollection: IUser[] = [{ id: 96014 }];
+        jest.spyOn(userService, 'query').mockReturnValue(of(new HttpResponse({ body: userCollection })));
         const additionalUsers = [user];
         const expectedCollection: IUser[] = [...additionalUsers, ...userCollection];
-        spyOn(userService, 'addUserToCollectionIfMissing').and.returnValue(expectedCollection);
+        jest.spyOn(userService, 'addUserToCollectionIfMissing').mockReturnValue(expectedCollection);
 
         activatedRoute.data = of({ favorite });
         comp.ngOnInit();
@@ -85,9 +85,9 @@ describe('Component Tests', () => {
 
       it('Should update editForm', () => {
         const favorite: IFavorite = { id: 456 };
-        const gif: IGif = { id: 70428 };
+        const gif: IGif = { id: 66381 };
         favorite.gif = gif;
-        const user: IUser = { id: 13820 };
+        const user: IUser = { id: 28489 };
         favorite.user = user;
 
         activatedRoute.data = of({ favorite });
@@ -102,10 +102,10 @@ describe('Component Tests', () => {
     describe('save', () => {
       it('Should call update service on save for existing entity', () => {
         // GIVEN
-        const saveSubject = new Subject();
+        const saveSubject = new Subject<HttpResponse<Favorite>>();
         const favorite = { id: 123 };
-        spyOn(favoriteService, 'update').and.returnValue(saveSubject);
-        spyOn(comp, 'previousState');
+        jest.spyOn(favoriteService, 'update').mockReturnValue(saveSubject);
+        jest.spyOn(comp, 'previousState');
         activatedRoute.data = of({ favorite });
         comp.ngOnInit();
 
@@ -123,10 +123,10 @@ describe('Component Tests', () => {
 
       it('Should call create service on save for new entity', () => {
         // GIVEN
-        const saveSubject = new Subject();
+        const saveSubject = new Subject<HttpResponse<Favorite>>();
         const favorite = new Favorite();
-        spyOn(favoriteService, 'create').and.returnValue(saveSubject);
-        spyOn(comp, 'previousState');
+        jest.spyOn(favoriteService, 'create').mockReturnValue(saveSubject);
+        jest.spyOn(comp, 'previousState');
         activatedRoute.data = of({ favorite });
         comp.ngOnInit();
 
@@ -144,10 +144,10 @@ describe('Component Tests', () => {
 
       it('Should set isSaving to false on error', () => {
         // GIVEN
-        const saveSubject = new Subject();
+        const saveSubject = new Subject<HttpResponse<Favorite>>();
         const favorite = { id: 123 };
-        spyOn(favoriteService, 'update').and.returnValue(saveSubject);
-        spyOn(comp, 'previousState');
+        jest.spyOn(favoriteService, 'update').mockReturnValue(saveSubject);
+        jest.spyOn(comp, 'previousState');
         activatedRoute.data = of({ favorite });
         comp.ngOnInit();
 

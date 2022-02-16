@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { SharedModule } from 'app/shared/shared.module';
 import { FavoriteComponent } from './list/favorite.component';
 import { FavoriteDetailComponent } from './detail/favorite-detail.component';

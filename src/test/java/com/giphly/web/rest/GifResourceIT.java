@@ -259,8 +259,6 @@ class GifResourceIT {
         Gif partialUpdatedGif = new Gif();
         partialUpdatedGif.setId(gif.getId());
 
-        partialUpdatedGif.giphyGifId(UPDATED_GIPHY_GIF_ID);
-
         restGifMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedGif.getId())
@@ -273,7 +271,7 @@ class GifResourceIT {
         List<Gif> gifList = gifRepository.findAll();
         assertThat(gifList).hasSize(databaseSizeBeforeUpdate);
         Gif testGif = gifList.get(gifList.size() - 1);
-        assertThat(testGif.getGiphyGifId()).isEqualTo(UPDATED_GIPHY_GIF_ID);
+        assertThat(testGif.getGiphyGifId()).isEqualTo(DEFAULT_GIPHY_GIF_ID);
     }
 
     @Test

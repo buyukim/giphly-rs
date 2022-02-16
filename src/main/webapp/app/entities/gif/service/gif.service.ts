@@ -12,9 +12,9 @@ export type EntityArrayResponseType = HttpResponse<IGif[]>;
 
 @Injectable({ providedIn: 'root' })
 export class GifService {
-  public resourceUrl = this.applicationConfigService.getEndpointFor('api/gifs');
+  protected resourceUrl = this.applicationConfigService.getEndpointFor('api/gifs');
 
-  constructor(protected http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
+  constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
   create(gif: IGif): Observable<EntityResponseType> {
     return this.http.post<IGif>(this.resourceUrl, gif, { observe: 'response' });

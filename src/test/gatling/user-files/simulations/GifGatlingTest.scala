@@ -71,8 +71,7 @@ class GifGatlingTest extends Simulation {
             .post("/api/gifs")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
-                "id":null
-                , "giphyGifId":"SAMPLE_TEXT"
+                "giphyGifId":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_gif_url"))).exitHereIfFailed

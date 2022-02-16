@@ -71,7 +71,6 @@ class FavoriteGatlingTest extends Simulation {
             .post("/api/favorites")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
-                "id":null
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_favorite_url"))).exitHereIfFailed

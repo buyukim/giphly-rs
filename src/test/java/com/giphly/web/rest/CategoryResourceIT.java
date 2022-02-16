@@ -294,6 +294,8 @@ class CategoryResourceIT {
         Category partialUpdatedCategory = new Category();
         partialUpdatedCategory.setId(category.getId());
 
+        partialUpdatedCategory.tag(UPDATED_TAG);
+
         restCategoryMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedCategory.getId())
@@ -306,7 +308,7 @@ class CategoryResourceIT {
         List<Category> categoryList = categoryRepository.findAll();
         assertThat(categoryList).hasSize(databaseSizeBeforeUpdate);
         Category testCategory = categoryList.get(categoryList.size() - 1);
-        assertThat(testCategory.getTag()).isEqualTo(DEFAULT_TAG);
+        assertThat(testCategory.getTag()).isEqualTo(UPDATED_TAG);
     }
 
     @Test
