@@ -85,7 +85,6 @@ public class FavoriteServiceImpl implements FavoriteService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Favorite : {}", id);
-
         favoriteRepository.deleteById(id);
     }
 }

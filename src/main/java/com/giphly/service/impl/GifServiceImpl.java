@@ -73,7 +73,6 @@ public class GifServiceImpl implements GifService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Gif : {}", id);
-
         gifRepository.deleteById(id);
     }
 }

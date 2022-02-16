@@ -116,7 +116,6 @@ public class FavoriteResource {
     @DeleteMapping("/favorites/{id}")
     public ResponseEntity<Void> deleteFavorite(@PathVariable Long id) {
         log.debug("REST request to delete Favorite : {}", id);
-
         favoriteService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
