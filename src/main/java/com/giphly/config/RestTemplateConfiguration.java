@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 import com.giphly.client.giphy.api.invoker.RFC3339DateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -28,9 +27,6 @@ public class RestTemplateConfiguration {
     @Autowired
     private Jdk8Module jdk8Module;
 
-    @Autowired
-    private AfterburnerModule afterburnerModule;
-
     @Bean
     public RestTemplate giphyRestTemplate() {
         Duration readTimeout = Duration.ofSeconds(20L);
@@ -39,7 +35,6 @@ public class RestTemplateConfiguration {
         MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter =
             new MappingJackson2HttpMessageConverter();
         ObjectMapper mapper = mappingJackson2HttpMessageConverter.getObjectMapper()
-            .registerModule(afterburnerModule)
             .registerModule(jdk8Module)
             .registerModule(javaTimeModule);
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

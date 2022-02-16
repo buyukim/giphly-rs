@@ -41,7 +41,7 @@ public class FavoriteServiceImpl implements FavoriteService {
     }
 
 
-     * Get all the favorites for the currently logged in user
+     /** Get all the favorites for the currently logged in user
      *
      * @return the list of entities.
      */
@@ -52,7 +52,7 @@ public class FavoriteServiceImpl implements FavoriteService {
         return favoriteRepository.findByUserIsCurrentUser();
     }
 
-    /**
+
     @Override
     @Transactional(readOnly = true)
     public Optional<Favorite> findOne(Long id) {
