@@ -39,15 +39,13 @@ public class CategoryServiceImpl implements CategoryService {
 
         return categoryRepository
             .findById(category.getId())
-            .map(
-                existingCategory -> {
-                    if (category.getTag() != null) {
-                        existingCategory.setTag(category.getTag());
-                    }
-
-                    return existingCategory;
+            .map(existingCategory -> {
+                if (category.getTag() != null) {
+                    existingCategory.setTag(category.getTag());
                 }
-            )
+
+                return existingCategory;
+            })
             .map(categoryRepository::save);
     }
 

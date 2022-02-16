@@ -37,15 +37,13 @@ public class GifServiceImpl implements GifService {
 
         return gifRepository
             .findById(gif.getId())
-            .map(
-                existingGif -> {
-                    if (gif.getGiphyGifId() != null) {
-                        existingGif.setGiphyGifId(gif.getGiphyGifId());
-                    }
-
-                    return existingGif;
+            .map(existingGif -> {
+                if (gif.getGiphyGifId() != null) {
+                    existingGif.setGiphyGifId(gif.getGiphyGifId());
                 }
-            )
+
+                return existingGif;
+            })
             .map(gifRepository::save);
     }
 

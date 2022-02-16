@@ -7,7 +7,6 @@ import com.giphly.service.MailService;
 import com.giphly.service.UserService;
 import com.giphly.service.dto.AdminUserDTO;
 import com.giphly.service.dto.PasswordChangeDTO;
-import com.giphly.service.dto.UserDTO;
 import com.giphly.web.rest.errors.*;
 import com.giphly.web.rest.vm.KeyAndPasswordVM;
 import com.giphly.web.rest.vm.ManagedUserVM;

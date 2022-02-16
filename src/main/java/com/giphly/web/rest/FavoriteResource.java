@@ -107,7 +107,7 @@ public class FavoriteResource {
      * or with status {@code 500 (Internal Server Error)} if the favorite couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PatchMapping(value = "/favorites/{id}", consumes = "application/merge-patch+json")
+    @PatchMapping(value = "/favorites/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<Favorite> partialUpdateFavorite(
         @PathVariable(value = "id", required = false) final Long id,
         @RequestBody Favorite favorite
