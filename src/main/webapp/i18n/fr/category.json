@@ -3,6 +3,7 @@
     "category": {
       "home": {
         "title": "Categories",
+        "refreshListLabel": "Actualiser la liste",
         "createLabel": "Créer un nouveau Category",
         "createOrEditLabel": "Créer ou éditer un Category",
         "notFound": "Aucun Category trouvé"
@@ -16,6 +17,7 @@
       "detail": {
         "title": "Category"
       },
+      "id": "ID",
       "tag": "Tag",
       "gif": "Gif"
     }

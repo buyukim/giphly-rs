@@ -1,16 +1,14 @@
 package com.giphly.service;
 
 import com.giphly.domain.Favorite;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service Interface for managing {@link Favorite}.
  */
 public interface FavoriteService {
-
     /**
      * Save a favorite.
      *
@@ -18,6 +16,14 @@ public interface FavoriteService {
      * @return the persisted entity.
      */
     Favorite save(Favorite favorite);
+
+    /**
+     * Partially updates a favorite.
+     *
+     * @param favorite the entity to update partially.
+     * @return the persisted entity.
+     */
+    Optional<Favorite> partialUpdate(Favorite favorite);
 
     /**
      * Get all the favorites.
@@ -28,7 +34,6 @@ public interface FavoriteService {
 
     @Transactional(readOnly = true)
     List<Favorite> findAllForLoggedInUser();
-
 
     /**
      * Get the "id" favorite.

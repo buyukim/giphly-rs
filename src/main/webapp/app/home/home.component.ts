@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
-import { LoginModalService } from 'app/core/login/login-modal.service';
 import { AccountService } from 'app/core/auth/account.service';
-import { Account } from 'app/core/user/account.model';
+import { Account } from 'app/core/auth/account.model';
 
 import { of } from 'rxjs';
 import { debounceTime, map, distinctUntilChanged, filter } from 'rxjs/operators';
@@ -13,17 +13,16 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'jhi-home',
   templateUrl: './home.component.html',
-  styleUrls: ['home.scss'],
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
-
   @ViewChild('gifSearchInput', { static: true }) gifSearchInput!: ElementRef;
   searchApiResponse: any;
   isSearching: boolean;
 
-  constructor(private accountService: AccountService, private loginModalService: LoginModalService, private httpClient: HttpClient) {
+  constructor(private accountService: AccountService, private router: Router, private httpClient: HttpClient) {
     this.isSearching = false;
     this.searchApiResponse = [];
   }
@@ -34,9 +33,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     fromEvent(this.gifSearchInput.nativeElement, 'keyup')
       .pipe(
         // get value
-        map((event: any) => {
-          return event.target.value;
-        }),
+        map(
+          (event: any) =>
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+            event.target.value
+        ),
         // if character length greater then 2
         filter(res => res.length > 2),
         // Time in milliseconds between key events
@@ -61,6 +62,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   searchGetCall(term: string): Observable<Object> {
     if (term === '') {
       return of([]);
@@ -73,7 +75,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   login(): void {
-    this.loginModalService.open();
+    this.router.navigate(['/login']);
   }
 
   ngOnDestroy(): void {

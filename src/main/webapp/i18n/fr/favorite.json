@@ -3,6 +3,7 @@
     "favorite": {
       "home": {
         "title": "Favorites",
+        "refreshListLabel": "Actualiser la liste",
         "createLabel": "Créer un nouveau Favorite",
         "createOrEditLabel": "Créer ou éditer un Favorite",
         "notFound": "Aucun Favorite trouvé"
@@ -16,6 +17,7 @@
       "detail": {
         "title": "Favorite"
       },
+      "id": "ID",
       "gif": "Gif",
       "user": "User"
     }

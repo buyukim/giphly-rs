@@ -1,54 +1,56 @@
 <h1 class="display-4" jhiTranslate="home.title">Welcome to Giphly!</h1>
 <div class="row">
-    <div class="col-12 text-center">
-        <input type="text" #gifSearchInput class="form-control"
-               placeholder="Search for GIFs" />
+  <div class="col-md-3">
+    <span class="hipster img-fluid rounded"></span>
+  </div>
+  <div class="col-12 text-center">
+    <input type="text" #gifSearchInput class="form-control" placeholder="Search for GIFs" />
+  </div>
 
-    </div>
+  <div class="col-md-9">
+    <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
+  </div>
 </div>
 <div class="row" *ngIf="isSearching">
+  <div class="col-12 text-center">
+    <h3>Searching ...</h3>
+    <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
+
+    <div [ngSwitch]="isAuthenticated()">
+      <div class="alert alert-success" *ngSwitchCase="true">
+        <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
+          >You are logged in as user "{{ account.login }}".</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <ng-container *ngIf="searchApiResponse['Response'] == 'False'; else elseTemplate">
     <div class="col-12 text-center">
-
-        <h3>Searching ... </h3>
-
+      <div class="alert alert-danger" role="alert">
+        {{ searchApiResponse['Error'] }}
+      </div>
     </div>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div class="alert alert-warning" *ngSwitchCase="false">
+      <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>&nbsp;
+      <a class="alert-link" routerLink="account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
+
+      <div class="col" *ngFor="let gif of searchApiResponse['data']">
+        <div class="card" style="margin: 5px">
+          <img class=".image-fluid" src="{{ gif.images.fixed_width.url }}" />
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </div>
 <div class="row">
-    <ng-container *ngIf="searchApiResponse['Response'] == 'False'; else elseTemplate">
-
-        <div class="col-12 text-center">
-            <div class="alert alert-danger" role="alert">
-                {{searchApiResponse['Error']}}
-
-            </div>
-        </div>
-
-    </ng-container>
-    <ng-template #elseTemplate>
-
-
-        <div class="col" *ngFor="let gif of searchApiResponse['data']">
-            <div class="card" style="margin:5px;">
-                <img class=".image-fluid" src="{{gif.images.fixed_width.url}}">
-
-            </div>
-        </div>
-
-    </ng-template>
-</div>
-<div class="row">
-
-    <div class="col-md-9">
-        <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-                <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
-                      [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
-            </div>
-        </div>
-
-
-        <p>
-            <span jhiTranslate="home.like">If you like Giphly, don't forget to give us a star on</span> <a href="https://github.com/buyukim/giphly-rs" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github">GitHub</a>!
-        </p>
-    </div>
+  <div class="col-md-9">
+    <p>
+      <span jhiTranslate="home.like">If you like Giphly, don't forget to give us a star on</span>
+      <a href="https://github.com/buyukim/giphly-rs" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github">GitHub</a>!
+    </p>
+  </div>
 </div>

@@ -1,18 +1,16 @@
 package com.giphly.service.impl;
 
-import com.giphly.service.CategoryService;
 import com.giphly.domain.Category;
 import com.giphly.repository.CategoryRepository;
+import com.giphly.service.CategoryService;
+import java.util.List;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Service Implementation for managing {@link Category}.
@@ -36,12 +34,29 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public Optional<Category> partialUpdate(Category category) {
+        log.debug("Request to partially update Category : {}", category);
+
+        return categoryRepository
+            .findById(category.getId())
+            .map(
+                existingCategory -> {
+                    if (category.getTag() != null) {
+                        existingCategory.setTag(category.getTag());
+                    }
+
+                    return existingCategory;
+                }
+            )
+            .map(categoryRepository::save);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Category> findAll() {
         log.debug("Request to get all Categories");
         return categoryRepository.findAllWithEagerRelationships();
     }
-
 
     public Page<Category> findAllWithEagerRelationships(Pageable pageable) {
         return categoryRepository.findAllWithEagerRelationships(pageable);

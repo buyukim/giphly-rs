@@ -1,14 +1,13 @@
 package com.giphly.domain;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * A Category.
@@ -31,9 +30,12 @@ public class Category implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "category_gif",
-               joinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "gif_id", referencedColumnName = "id"))
+    @JoinTable(
+        name = "rel_category__gif",
+        joinColumns = @JoinColumn(name = "category_id"),
+        inverseJoinColumns = @JoinColumn(name = "gif_id")
+    )
+    @JsonIgnoreProperties(value = { "categories" }, allowSetters = true)
     private Set<Gif> gifs = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -45,8 +47,13 @@ public class Category implements Serializable {
         this.id = id;
     }
 
+    public Category id(Long id) {
+        this.id = id;
+        return this;
+    }
+
     public String getTag() {
-        return tag;
+        return this.tag;
     }
 
     public Category tag(String tag) {
@@ -59,11 +66,11 @@ public class Category implements Serializable {
     }
 
     public Set<Gif> getGifs() {
-        return gifs;
+        return this.gifs;
     }
 
     public Category gifs(Set<Gif> gifs) {
-        this.gifs = gifs;
+        this.setGifs(gifs);
         return this;
     }
 
@@ -82,6 +89,7 @@ public class Category implements Serializable {
     public void setGifs(Set<Gif> gifs) {
         this.gifs = gifs;
     }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -97,7 +105,8 @@ public class Category implements Serializable {
 
     @Override
     public int hashCode() {
-        return 31;
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        return getClass().hashCode();
     }
 
     // prettier-ignore

@@ -1,16 +1,14 @@
 package com.giphly.service.impl;
 
-import com.giphly.service.FavoriteService;
 import com.giphly.domain.Favorite;
 import com.giphly.repository.FavoriteRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+import com.giphly.service.FavoriteService;
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service Implementation for managing {@link Favorite}.
@@ -34,14 +32,27 @@ public class FavoriteServiceImpl implements FavoriteService {
     }
 
     @Override
+    public Optional<Favorite> partialUpdate(Favorite favorite) {
+        log.debug("Request to partially update Favorite : {}", favorite);
+
+        return favoriteRepository
+            .findById(favorite.getId())
+            .map(
+                existingFavorite -> {
+                    return existingFavorite;
+                }
+            )
+            .map(favoriteRepository::save);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Favorite> findAll() {
         log.debug("Request to get all Favorites");
         return favoriteRepository.findAll();
     }
 
-
-     /** Get all the favorites for the currently logged in user
+    /** Get all the favorites for the currently logged in user
      *
      * @return the list of entities.
      */
@@ -51,7 +62,6 @@ public class FavoriteServiceImpl implements FavoriteService {
         log.debug("Request to get all Favorites");
         return favoriteRepository.findByUserIsCurrentUser();
     }
-
 
     @Override
     @Transactional(readOnly = true)
