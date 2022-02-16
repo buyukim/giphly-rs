@@ -29,23 +29,12 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    /**
-     * Save a category.
-     *
-     * @param category the entity to save.
-     * @return the persisted entity.
-     */
     @Override
     public Category save(Category category) {
         log.debug("Request to save Category : {}", category);
         return categoryRepository.save(category);
     }
 
-    /**
-     * Get all the categories.
-     *
-     * @return the list of entities.
-     */
     @Override
     @Transactional(readOnly = true)
     public List<Category> findAll() {
@@ -54,21 +43,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
 
-    /**
-     * Get all the categories with eager load of many-to-many relationships.
-     *
-     * @return the list of entities.
-     */
     public Page<Category> findAllWithEagerRelationships(Pageable pageable) {
         return categoryRepository.findAllWithEagerRelationships(pageable);
     }
 
-    /**
-     * Get one category by id.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
     @Override
     @Transactional(readOnly = true)
     public Optional<Category> findOne(Long id) {
@@ -76,11 +54,6 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepository.findOneWithEagerRelationships(id);
     }
 
-    /**
-     * Delete the category by id.
-     *
-     * @param id the id of the entity.
-     */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Category : {}", id);

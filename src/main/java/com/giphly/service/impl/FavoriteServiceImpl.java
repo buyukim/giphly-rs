@@ -27,23 +27,12 @@ public class FavoriteServiceImpl implements FavoriteService {
         this.favoriteRepository = favoriteRepository;
     }
 
-    /**
-     * Save a favorite.
-     *
-     * @param favorite the entity to save.
-     * @return the persisted entity.
-     */
     @Override
     public Favorite save(Favorite favorite) {
         log.debug("Request to save Favorite : {}", favorite);
         return favoriteRepository.save(favorite);
     }
 
-    /**
-     * Get all the favorites.
-     *
-     * @return the list of entities.
-     */
     @Override
     @Transactional(readOnly = true)
     public List<Favorite> findAll() {
@@ -52,7 +41,6 @@ public class FavoriteServiceImpl implements FavoriteService {
     }
 
 
-    /**
      * Get all the favorites for the currently logged in user
      *
      * @return the list of entities.
@@ -65,11 +53,6 @@ public class FavoriteServiceImpl implements FavoriteService {
     }
 
     /**
-     * Get one favorite by id.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
     @Override
     @Transactional(readOnly = true)
     public Optional<Favorite> findOne(Long id) {
@@ -77,11 +60,6 @@ public class FavoriteServiceImpl implements FavoriteService {
         return favoriteRepository.findById(id);
     }
 
-    /**
-     * Delete the favorite by id.
-     *
-     * @param id the id of the entity.
-     */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Favorite : {}", id);
