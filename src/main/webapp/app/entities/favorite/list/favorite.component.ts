@@ -19,15 +19,15 @@ export class FavoriteComponent implements OnInit {
   loadAll(): void {
     this.isLoading = true;
 
-    this.favoriteService.query().subscribe(
-      (res: HttpResponse<IFavorite[]>) => {
+    this.favoriteService.query().subscribe({
+      next: (res: HttpResponse<IFavorite[]>) => {
         this.isLoading = false;
         this.favorites = res.body ?? [];
       },
-      () => {
+      error: () => {
         this.isLoading = false;
-      }
-    );
+      },
+    });
   }
 
   ngOnInit(): void {
