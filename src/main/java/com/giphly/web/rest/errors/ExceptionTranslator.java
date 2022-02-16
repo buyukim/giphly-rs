@@ -150,7 +150,7 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
 
     @Override
     public ProblemBuilder prepare(final Throwable throwable, final StatusType status, final URI type) {
-        
+
         Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
 
         if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_PRODUCTION)) {
@@ -165,7 +165,6 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
                         .map(this::toProblem)
                         .orElse(null));
             }
-    
             if (throwable instanceof DataAccessException) {
                 return Problem.builder()
                     .withType(type)
@@ -177,7 +176,6 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
                         .map(this::toProblem)
                         .orElse(null));
             }
-    
             if (containsPackageName(throwable.getMessage())) {
                 return Problem.builder()
                     .withType(type)
