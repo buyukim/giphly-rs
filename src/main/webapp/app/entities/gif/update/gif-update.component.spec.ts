@@ -12,102 +12,100 @@ import { IGif, Gif } from '../gif.model';
 
 import { GifUpdateComponent } from './gif-update.component';
 
-describe('Component Tests', () => {
-  describe('Gif Management Update Component', () => {
-    let comp: GifUpdateComponent;
-    let fixture: ComponentFixture<GifUpdateComponent>;
-    let activatedRoute: ActivatedRoute;
-    let gifService: GifService;
+describe('Gif Management Update Component', () => {
+  let comp: GifUpdateComponent;
+  let fixture: ComponentFixture<GifUpdateComponent>;
+  let activatedRoute: ActivatedRoute;
+  let gifService: GifService;
 
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
-        declarations: [GifUpdateComponent],
-        providers: [FormBuilder, ActivatedRoute],
-      })
-        .overrideTemplate(GifUpdateComponent, '')
-        .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      declarations: [GifUpdateComponent],
+      providers: [FormBuilder, ActivatedRoute],
+    })
+      .overrideTemplate(GifUpdateComponent, '')
+      .compileComponents();
 
-      fixture = TestBed.createComponent(GifUpdateComponent);
-      activatedRoute = TestBed.inject(ActivatedRoute);
-      gifService = TestBed.inject(GifService);
+    fixture = TestBed.createComponent(GifUpdateComponent);
+    activatedRoute = TestBed.inject(ActivatedRoute);
+    gifService = TestBed.inject(GifService);
 
-      comp = fixture.componentInstance;
+    comp = fixture.componentInstance;
+  });
+
+  describe('ngOnInit', () => {
+    it('Should update editForm', () => {
+      const gif: IGif = { id: 456 };
+
+      activatedRoute.data = of({ gif });
+      comp.ngOnInit();
+
+      expect(comp.editForm.value).toEqual(expect.objectContaining(gif));
+    });
+  });
+
+  describe('save', () => {
+    it('Should call update service on save for existing entity', () => {
+      // GIVEN
+      const saveSubject = new Subject<HttpResponse<Gif>>();
+      const gif = { id: 123 };
+      jest.spyOn(gifService, 'update').mockReturnValue(saveSubject);
+      jest.spyOn(comp, 'previousState');
+      activatedRoute.data = of({ gif });
+      comp.ngOnInit();
+
+      // WHEN
+      comp.save();
+      expect(comp.isSaving).toEqual(true);
+      saveSubject.next(new HttpResponse({ body: gif }));
+      saveSubject.complete();
+
+      // THEN
+      expect(comp.previousState).toHaveBeenCalled();
+      expect(gifService.update).toHaveBeenCalledWith(gif);
+      expect(comp.isSaving).toEqual(false);
     });
 
-    describe('ngOnInit', () => {
-      it('Should update editForm', () => {
-        const gif: IGif = { id: 456 };
+    it('Should call create service on save for new entity', () => {
+      // GIVEN
+      const saveSubject = new Subject<HttpResponse<Gif>>();
+      const gif = new Gif();
+      jest.spyOn(gifService, 'create').mockReturnValue(saveSubject);
+      jest.spyOn(comp, 'previousState');
+      activatedRoute.data = of({ gif });
+      comp.ngOnInit();
 
-        activatedRoute.data = of({ gif });
-        comp.ngOnInit();
+      // WHEN
+      comp.save();
+      expect(comp.isSaving).toEqual(true);
+      saveSubject.next(new HttpResponse({ body: gif }));
+      saveSubject.complete();
 
-        expect(comp.editForm.value).toEqual(expect.objectContaining(gif));
-      });
+      // THEN
+      expect(gifService.create).toHaveBeenCalledWith(gif);
+      expect(comp.isSaving).toEqual(false);
+      expect(comp.previousState).toHaveBeenCalled();
     });
 
-    describe('save', () => {
-      it('Should call update service on save for existing entity', () => {
-        // GIVEN
-        const saveSubject = new Subject<HttpResponse<Gif>>();
-        const gif = { id: 123 };
-        jest.spyOn(gifService, 'update').mockReturnValue(saveSubject);
-        jest.spyOn(comp, 'previousState');
-        activatedRoute.data = of({ gif });
-        comp.ngOnInit();
+    it('Should set isSaving to false on error', () => {
+      // GIVEN
+      const saveSubject = new Subject<HttpResponse<Gif>>();
+      const gif = { id: 123 };
+      jest.spyOn(gifService, 'update').mockReturnValue(saveSubject);
+      jest.spyOn(comp, 'previousState');
+      activatedRoute.data = of({ gif });
+      comp.ngOnInit();
 
-        // WHEN
-        comp.save();
-        expect(comp.isSaving).toEqual(true);
-        saveSubject.next(new HttpResponse({ body: gif }));
-        saveSubject.complete();
+      // WHEN
+      comp.save();
+      expect(comp.isSaving).toEqual(true);
+      saveSubject.error('This is an error!');
 
-        // THEN
-        expect(comp.previousState).toHaveBeenCalled();
-        expect(gifService.update).toHaveBeenCalledWith(gif);
-        expect(comp.isSaving).toEqual(false);
-      });
-
-      it('Should call create service on save for new entity', () => {
-        // GIVEN
-        const saveSubject = new Subject<HttpResponse<Gif>>();
-        const gif = new Gif();
-        jest.spyOn(gifService, 'create').mockReturnValue(saveSubject);
-        jest.spyOn(comp, 'previousState');
-        activatedRoute.data = of({ gif });
-        comp.ngOnInit();
-
-        // WHEN
-        comp.save();
-        expect(comp.isSaving).toEqual(true);
-        saveSubject.next(new HttpResponse({ body: gif }));
-        saveSubject.complete();
-
-        // THEN
-        expect(gifService.create).toHaveBeenCalledWith(gif);
-        expect(comp.isSaving).toEqual(false);
-        expect(comp.previousState).toHaveBeenCalled();
-      });
-
-      it('Should set isSaving to false on error', () => {
-        // GIVEN
-        const saveSubject = new Subject<HttpResponse<Gif>>();
-        const gif = { id: 123 };
-        jest.spyOn(gifService, 'update').mockReturnValue(saveSubject);
-        jest.spyOn(comp, 'previousState');
-        activatedRoute.data = of({ gif });
-        comp.ngOnInit();
-
-        // WHEN
-        comp.save();
-        expect(comp.isSaving).toEqual(true);
-        saveSubject.error('This is an error!');
-
-        // THEN
-        expect(gifService.update).toHaveBeenCalledWith(gif);
-        expect(comp.isSaving).toEqual(false);
-        expect(comp.previousState).not.toHaveBeenCalled();
-      });
+      // THEN
+      expect(gifService.update).toHaveBeenCalledWith(gif);
+      expect(comp.isSaving).toEqual(false);
+      expect(comp.previousState).not.toHaveBeenCalled();
     });
   });
 });
