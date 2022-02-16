@@ -7,42 +7,40 @@ import { CategoryService } from '../service/category.service';
 
 import { CategoryComponent } from './category.component';
 
-describe('Component Tests', () => {
-  describe('Category Management Component', () => {
-    let comp: CategoryComponent;
-    let fixture: ComponentFixture<CategoryComponent>;
-    let service: CategoryService;
+describe('Category Management Component', () => {
+  let comp: CategoryComponent;
+  let fixture: ComponentFixture<CategoryComponent>;
+  let service: CategoryService;
 
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
-        declarations: [CategoryComponent],
-      })
-        .overrideTemplate(CategoryComponent, '')
-        .compileComponents();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      declarations: [CategoryComponent],
+    })
+      .overrideTemplate(CategoryComponent, '')
+      .compileComponents();
 
-      fixture = TestBed.createComponent(CategoryComponent);
-      comp = fixture.componentInstance;
-      service = TestBed.inject(CategoryService);
+    fixture = TestBed.createComponent(CategoryComponent);
+    comp = fixture.componentInstance;
+    service = TestBed.inject(CategoryService);
 
-      const headers = new HttpHeaders().append('link', 'link;link');
-      jest.spyOn(service, 'query').mockReturnValue(
-        of(
-          new HttpResponse({
-            body: [{ id: 123 }],
-            headers,
-          })
-        )
-      );
-    });
+    const headers = new HttpHeaders();
+    jest.spyOn(service, 'query').mockReturnValue(
+      of(
+        new HttpResponse({
+          body: [{ id: 123 }],
+          headers,
+        })
+      )
+    );
+  });
 
-    it('Should call load all on init', () => {
-      // WHEN
-      comp.ngOnInit();
+  it('Should call load all on init', () => {
+    // WHEN
+    comp.ngOnInit();
 
-      // THEN
-      expect(service.query).toHaveBeenCalled();
-      expect(comp.categories?.[0]).toEqual(expect.objectContaining({ id: 123 }));
-    });
+    // THEN
+    expect(service.query).toHaveBeenCalled();
+    expect(comp.categories?.[0]).toEqual(expect.objectContaining({ id: 123 }));
   });
 });
