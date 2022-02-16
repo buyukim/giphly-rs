@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "com.giphly"
     },
-    "jhipsterVersion": "7.0.0",
+    "jhipsterVersion": "7.0.1",
     "applicationType": "monolith",
     "baseName": "giphly",
     "packageName": "com.giphly",

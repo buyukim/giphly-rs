@@ -42,10 +42,10 @@ describe('Component Tests', () => {
     describe('ngOnInit', () => {
       it('Should call Gif query and add missing value', () => {
         const category: ICategory = { id: 456 };
-        const gifs: IGif[] = [{ id: 43896 }];
+        const gifs: IGif[] = [{ id: 69100 }];
         category.gifs = gifs;
 
-        const gifCollection: IGif[] = [{ id: 47527 }];
+        const gifCollection: IGif[] = [{ id: 56101 }];
         spyOn(gifService, 'query').and.returnValue(of(new HttpResponse({ body: gifCollection })));
         const additionalGifs = [...gifs];
         const expectedCollection: IGif[] = [...additionalGifs, ...gifCollection];
@@ -61,7 +61,7 @@ describe('Component Tests', () => {
 
       it('Should update editForm', () => {
         const category: ICategory = { id: 456 };
-        const gifs: IGif = { id: 31264 };
+        const gifs: IGif = { id: 21176 };
         category.gifs = [gifs];
 
         activatedRoute.data = of({ category });
