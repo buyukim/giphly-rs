@@ -1,30 +1,30 @@
 {
-  "name": "Favorite",
+  "applications": "*",
+  "changelogDate": "20200210073700",
+  "clientRootFolder": "",
+  "dto": "no",
+  "entityTableName": "favorite",
   "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Favorite",
+  "pagination": "no",
+  "readOnly": false,
   "relationships": [
     {
-      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
       "otherEntityName": "gif",
       "otherEntityRelationshipName": "favorite",
       "relationshipName": "gif",
-      "otherEntityField": "id"
+      "relationshipType": "many-to-one"
     },
     {
-      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
       "otherEntityName": "user",
       "otherEntityRelationshipName": "favorite",
       "relationshipName": "user",
-      "otherEntityField": "id"
+      "relationshipType": "many-to-one"
     }
   ],
-  "changelogDate": "20200210073700",
-  "entityTableName": "favorite",
-  "dto": "no",
-  "pagination": "no",
-  "service": "serviceImpl",
-  "jpaMetamodelFiltering": false,
-  "fluentMethods": true,
-  "readOnly": false,
-  "clientRootFolder": "",
-  "applications": "*"
+  "service": "serviceImpl"
 }
