@@ -47,10 +47,10 @@ describe('Component Tests', () => {
     describe('ngOnInit', () => {
       it('Should call Gif query and add missing value', () => {
         const favorite: IFavorite = { id: 456 };
-        const gif: IGif = { id: 42058 };
+        const gif: IGif = { id: 77581 };
         favorite.gif = gif;
 
-        const gifCollection: IGif[] = [{ id: 74171 }];
+        const gifCollection: IGif[] = [{ id: 13809 }];
         spyOn(gifService, 'query').and.returnValue(of(new HttpResponse({ body: gifCollection })));
         const additionalGifs = [gif];
         const expectedCollection: IGif[] = [...additionalGifs, ...gifCollection];
@@ -66,10 +66,10 @@ describe('Component Tests', () => {
 
       it('Should call User query and add missing value', () => {
         const favorite: IFavorite = { id: 456 };
-        const user: IUser = { id: 15385 };
+        const user: IUser = { id: 87926 };
         favorite.user = user;
 
-        const userCollection: IUser[] = [{ id: 70324 }];
+        const userCollection: IUser[] = [{ id: 47918 }];
         spyOn(userService, 'query').and.returnValue(of(new HttpResponse({ body: userCollection })));
         const additionalUsers = [user];
         const expectedCollection: IUser[] = [...additionalUsers, ...userCollection];
@@ -85,9 +85,9 @@ describe('Component Tests', () => {
 
       it('Should update editForm', () => {
         const favorite: IFavorite = { id: 456 };
-        const gif: IGif = { id: 90089 };
+        const gif: IGif = { id: 70428 };
         favorite.gif = gif;
-        const user: IUser = { id: 96316 };
+        const user: IUser = { id: 13820 };
         favorite.user = user;
 
         activatedRoute.data = of({ favorite });

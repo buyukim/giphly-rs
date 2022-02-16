@@ -7,7 +7,7 @@
         Added the constraints for entity Favorite.
     -->
     <changeSet id="20200210073700-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="gif_id"
                                  baseTableName="favorite"
                                  constraintName="fk_favorite__gif_id"
@@ -19,6 +19,5 @@
                                  constraintName="fk_favorite__user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
-
     </changeSet>
 </databaseChangeLog>

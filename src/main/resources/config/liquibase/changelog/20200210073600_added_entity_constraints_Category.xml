@@ -7,7 +7,7 @@
         Added the constraints for entity Category.
     -->
     <changeSet id="20200210073600-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="category_id"
                                  baseTableName="rel_category__gif"
                                  constraintName="fk_rel_category__gif__category_id"
@@ -19,6 +19,5 @@
                                  constraintName="fk_rel_category__gif__gif_id"
                                  referencedColumnNames="id"
                                  referencedTableName="gif"/>
-        
     </changeSet>
 </databaseChangeLog>
