@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { SharedModule } from 'app/shared/shared.module';
 import { GifComponent } from './list/gif.component';
 import { GifDetailComponent } from './detail/gif-detail.component';

@@ -10,7 +10,7 @@ import { GifService } from '../service/gif.service';
 export class GifDeleteDialogComponent {
   gif?: IGif;
 
-  constructor(protected gifService: GifService, public activeModal: NgbActiveModal) {}
+  constructor(protected gifService: GifService, protected activeModal: NgbActiveModal) {}
 
   cancel(): void {
     this.activeModal.dismiss();

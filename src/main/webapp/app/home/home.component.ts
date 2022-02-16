@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
@@ -17,10 +19,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
-  authSubscription?: Subscription;
-  @ViewChild('gifSearchInput', { static: true }) gifSearchInput!: ElementRef;
+
+  @ViewChild('gifSearchInput', { static: true })
+  gifSearchInput!: ElementRef;
   searchApiResponse: any;
   isSearching: boolean;
+
+  private readonly destroy$ = new Subject<void>();
 
   constructor(private accountService: AccountService, private router: Router, private httpClient: HttpClient) {
     this.isSearching = false;
@@ -28,7 +33,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
+    this.accountService
+      .getAuthenticationState()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(account => (this.account = account));
 
     fromEvent(this.gifSearchInput.nativeElement, 'keyup')
       .pipe(
@@ -70,17 +78,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this.httpClient.get('/api/giphy-gifs/search?limit=24&q=' + term);
   }
 
-  isAuthenticated(): boolean {
-    return this.accountService.isAuthenticated();
-  }
-
   login(): void {
     this.router.navigate(['/login']);
   }
 
   ngOnDestroy(): void {
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "com.giphly"
     },
-    "jhipsterVersion": "7.0.1",
+    "jhipsterVersion": "7.1.0",
     "applicationType": "monolith",
     "baseName": "giphly",
     "packageName": "com.giphly",
@@ -46,6 +46,7 @@
     "reactive": false,
     "nativeLanguage": "en",
     "languages": ["en", "fr"],
-    "entities": ["Gif", "Category", "Favorite"]
+    "entities": ["Gif", "Category", "Favorite"],
+    "devServerPort": 4200
   }
 }

@@ -42,14 +42,14 @@ describe('Component Tests', () => {
     describe('ngOnInit', () => {
       it('Should call Gif query and add missing value', () => {
         const category: ICategory = { id: 456 };
-        const gifs: IGif[] = [{ id: 69100 }];
+        const gifs: IGif[] = [{ id: 5333 }];
         category.gifs = gifs;
 
-        const gifCollection: IGif[] = [{ id: 56101 }];
-        spyOn(gifService, 'query').and.returnValue(of(new HttpResponse({ body: gifCollection })));
+        const gifCollection: IGif[] = [{ id: 63235 }];
+        jest.spyOn(gifService, 'query').mockReturnValue(of(new HttpResponse({ body: gifCollection })));
         const additionalGifs = [...gifs];
         const expectedCollection: IGif[] = [...additionalGifs, ...gifCollection];
-        spyOn(gifService, 'addGifToCollectionIfMissing').and.returnValue(expectedCollection);
+        jest.spyOn(gifService, 'addGifToCollectionIfMissing').mockReturnValue(expectedCollection);
 
         activatedRoute.data = of({ category });
         comp.ngOnInit();
@@ -61,7 +61,7 @@ describe('Component Tests', () => {
 
       it('Should update editForm', () => {
         const category: ICategory = { id: 456 };
-        const gifs: IGif = { id: 21176 };
+        const gifs: IGif = { id: 87437 };
         category.gifs = [gifs];
 
         activatedRoute.data = of({ category });
@@ -75,10 +75,10 @@ describe('Component Tests', () => {
     describe('save', () => {
       it('Should call update service on save for existing entity', () => {
         // GIVEN
-        const saveSubject = new Subject();
+        const saveSubject = new Subject<HttpResponse<Category>>();
         const category = { id: 123 };
-        spyOn(categoryService, 'update').and.returnValue(saveSubject);
-        spyOn(comp, 'previousState');
+        jest.spyOn(categoryService, 'update').mockReturnValue(saveSubject);
+        jest.spyOn(comp, 'previousState');
         activatedRoute.data = of({ category });
         comp.ngOnInit();
 
@@ -96,10 +96,10 @@ describe('Component Tests', () => {
 
       it('Should call create service on save for new entity', () => {
         // GIVEN
-        const saveSubject = new Subject();
+        const saveSubject = new Subject<HttpResponse<Category>>();
         const category = new Category();
-        spyOn(categoryService, 'create').and.returnValue(saveSubject);
-        spyOn(comp, 'previousState');
+        jest.spyOn(categoryService, 'create').mockReturnValue(saveSubject);
+        jest.spyOn(comp, 'previousState');
         activatedRoute.data = of({ category });
         comp.ngOnInit();
 
@@ -117,10 +117,10 @@ describe('Component Tests', () => {
 
       it('Should set isSaving to false on error', () => {
         // GIVEN
-        const saveSubject = new Subject();
+        const saveSubject = new Subject<HttpResponse<Category>>();
         const category = { id: 123 };
-        spyOn(categoryService, 'update').and.returnValue(saveSubject);
-        spyOn(comp, 'previousState');
+        jest.spyOn(categoryService, 'update').mockReturnValue(saveSubject);
+        jest.spyOn(comp, 'previousState');
         activatedRoute.data = of({ category });
         comp.ngOnInit();
 

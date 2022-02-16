@@ -139,7 +139,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Favorite to an array', () => {
-          const favoriteArray: IFavorite[] = [{ id: 123 }, { id: 456 }, { id: 32123 }];
+          const favoriteArray: IFavorite[] = [{ id: 123 }, { id: 456 }, { id: 59272 }];
           const favoriteCollection: IFavorite[] = [{ id: 123 }];
           expectedResult = service.addFavoriteToCollectionIfMissing(favoriteCollection, ...favoriteArray);
           expect(expectedResult).toHaveLength(3);
@@ -159,6 +159,12 @@ describe('Service Tests', () => {
           expectedResult = service.addFavoriteToCollectionIfMissing([], null, favorite, undefined);
           expect(expectedResult).toHaveLength(1);
           expect(expectedResult).toContain(favorite);
+        });
+
+        it('should return initial array if no Favorite is added', () => {
+          const favoriteCollection: IFavorite[] = [{ id: 123 }];
+          expectedResult = service.addFavoriteToCollectionIfMissing(favoriteCollection, undefined, null);
+          expect(expectedResult).toEqual(favoriteCollection);
         });
       });
     });

@@ -147,7 +147,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Gif to an array', () => {
-          const gifArray: IGif[] = [{ id: 123 }, { id: 456 }, { id: 31802 }];
+          const gifArray: IGif[] = [{ id: 123 }, { id: 456 }, { id: 15464 }];
           const gifCollection: IGif[] = [{ id: 123 }];
           expectedResult = service.addGifToCollectionIfMissing(gifCollection, ...gifArray);
           expect(expectedResult).toHaveLength(3);
@@ -167,6 +167,12 @@ describe('Service Tests', () => {
           expectedResult = service.addGifToCollectionIfMissing([], null, gif, undefined);
           expect(expectedResult).toHaveLength(1);
           expect(expectedResult).toContain(gif);
+        });
+
+        it('should return initial array if no Gif is added', () => {
+          const gifCollection: IGif[] = [{ id: 123 }];
+          expectedResult = service.addGifToCollectionIfMissing(gifCollection, undefined, null);
+          expect(expectedResult).toEqual(gifCollection);
         });
       });
     });

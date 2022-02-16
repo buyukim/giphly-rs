@@ -12,9 +12,9 @@ export type EntityArrayResponseType = HttpResponse<IFavorite[]>;
 
 @Injectable({ providedIn: 'root' })
 export class FavoriteService {
-  public resourceUrl = this.applicationConfigService.getEndpointFor('api/favorites');
+  protected resourceUrl = this.applicationConfigService.getEndpointFor('api/favorites');
 
-  constructor(protected http: HttpClient, private applicationConfigService: ApplicationConfigService) {}
+  constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
   create(favorite: IFavorite): Observable<EntityResponseType> {
     return this.http.post<IFavorite>(this.resourceUrl, favorite, { observe: 'response' });
