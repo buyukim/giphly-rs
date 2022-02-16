@@ -19,15 +19,15 @@ export class GifComponent implements OnInit {
   loadAll(): void {
     this.isLoading = true;
 
-    this.gifService.query().subscribe(
-      (res: HttpResponse<IGif[]>) => {
+    this.gifService.query().subscribe({
+      next: (res: HttpResponse<IGif[]>) => {
         this.isLoading = false;
         this.gifs = res.body ?? [];
       },
-      () => {
+      error: () => {
         this.isLoading = false;
-      }
-    );
+      },
+    });
   }
 
   ngOnInit(): void {

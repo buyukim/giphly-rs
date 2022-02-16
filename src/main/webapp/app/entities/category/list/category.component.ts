@@ -19,15 +19,15 @@ export class CategoryComponent implements OnInit {
   loadAll(): void {
     this.isLoading = true;
 
-    this.categoryService.query().subscribe(
-      (res: HttpResponse<ICategory[]>) => {
+    this.categoryService.query().subscribe({
+      next: (res: HttpResponse<ICategory[]>) => {
         this.isLoading = false;
         this.categories = res.body ?? [];
       },
-      () => {
+      error: () => {
         this.isLoading = false;
-      }
-    );
+      },
+    });
   }
 
   ngOnInit(): void {
