@@ -1,12 +1,10 @@
 package com.giphly.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-
-import java.io.Serializable;
 
 /**
  * A Favorite.
@@ -24,11 +22,10 @@ public class Favorite implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "favorites", allowSetters = true)
+    @JsonIgnoreProperties(value = { "categories" }, allowSetters = true)
     private Gif gif;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "favorites", allowSetters = true)
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -40,12 +37,17 @@ public class Favorite implements Serializable {
         this.id = id;
     }
 
+    public Favorite id(Long id) {
+        this.id = id;
+        return this;
+    }
+
     public Gif getGif() {
-        return gif;
+        return this.gif;
     }
 
     public Favorite gif(Gif gif) {
-        this.gif = gif;
+        this.setGif(gif);
         return this;
     }
 
@@ -54,17 +56,18 @@ public class Favorite implements Serializable {
     }
 
     public User getUser() {
-        return user;
+        return this.user;
     }
 
     public Favorite user(User user) {
-        this.user = user;
+        this.setUser(user);
         return this;
     }
 
     public void setUser(User user) {
         this.user = user;
     }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -80,7 +83,8 @@ public class Favorite implements Serializable {
 
     @Override
     public int hashCode() {
-        return 31;
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        return getClass().hashCode();
     }
 
     // prettier-ignore

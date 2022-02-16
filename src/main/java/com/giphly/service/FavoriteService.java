@@ -1,7 +1,6 @@
 package com.giphly.service;
 
 import com.giphly.domain.Favorite;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +8,6 @@ import java.util.Optional;
  * Service Interface for managing {@link Favorite}.
  */
 public interface FavoriteService {
-
     /**
      * Save a favorite.
      *
@@ -19,12 +17,19 @@ public interface FavoriteService {
     Favorite save(Favorite favorite);
 
     /**
+     * Partially updates a favorite.
+     *
+     * @param favorite the entity to update partially.
+     * @return the persisted entity.
+     */
+    Optional<Favorite> partialUpdate(Favorite favorite);
+
+    /**
      * Get all the favorites.
      *
      * @return the list of entities.
      */
     List<Favorite> findAll();
-
 
     /**
      * Get the "id" favorite.
