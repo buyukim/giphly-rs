@@ -1,14 +1,13 @@
 package com.giphly.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import com.giphly.web.rest.TestUtil;
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import com.giphly.web.rest.TestUtil;
 
-class GifTest {
+public class GifTest {
 
     @Test
-    void equalsVerifier() throws Exception {
+    public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Gif.class);
         Gif gif1 = new Gif();
         gif1.setId(1L);

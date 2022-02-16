@@ -3,9 +3,10 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+    
     <!--
         Added the entity Category.
     -->
@@ -23,7 +24,7 @@
 
     <changeSet id="20200210073600-1-relations" author="jhipster">
 
-        <createTable tableName="rel_category__gif">
+        <createTable tableName="category_gif">
             <column name="gif_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
@@ -32,9 +33,9 @@
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="category_id, gif_id" tableName="rel_category__gif"/>
+        <addPrimaryKey columnNames="category_id, gif_id" tableName="category_gif"/>
+        
     </changeSet>
-
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 
     <!--
@@ -55,4 +56,5 @@
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
+
 </databaseChangeLog>

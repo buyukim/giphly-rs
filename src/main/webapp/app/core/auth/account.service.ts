@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { TranslateService } from '@ngx-translate/core';
+import { JhiLanguageService } from 'ng-jhipster';
 import { SessionStorageService } from 'ngx-webstorage';
 import { Observable, ReplaySubject, of } from 'rxjs';
 import { shareReplay, tap, catchError } from 'rxjs/operators';
-
 import { StateStorageService } from 'app/core/auth/state-storage.service';
-import { ApplicationConfigService } from '../config/application-config.service';
-import { Account } from 'app/core/auth/account.model';
+
+import { SERVER_API_URL } from 'app/app.constants';
+import { Account } from 'app/core/user/account.model';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -17,16 +17,15 @@ export class AccountService {
   private accountCache$?: Observable<Account | null>;
 
   constructor(
-    private translateService: TranslateService,
+    private languageService: JhiLanguageService,
     private sessionStorage: SessionStorageService,
     private http: HttpClient,
     private stateStorageService: StateStorageService,
-    private router: Router,
-    private applicationConfigService: ApplicationConfigService
+    private router: Router
   ) {}
 
   save(account: Account): Observable<{}> {
-    return this.http.post(this.applicationConfigService.getEndpointFor('api/account'), account);
+    return this.http.post(SERVER_API_URL + 'api/account', account);
   }
 
   authenticate(identity: Account | null): void {
@@ -35,7 +34,7 @@ export class AccountService {
   }
 
   hasAnyAuthority(authorities: string[] | string): boolean {
-    if (!this.userIdentity) {
+    if (!this.userIdentity || !this.userIdentity.authorities) {
       return false;
     }
     if (!Array.isArray(authorities)) {
@@ -47,15 +46,17 @@ export class AccountService {
   identity(force?: boolean): Observable<Account | null> {
     if (!this.accountCache$ || force || !this.isAuthenticated()) {
       this.accountCache$ = this.fetch().pipe(
-        catchError(() => of(null)),
+        catchError(() => {
+          return of(null);
+        }),
         tap((account: Account | null) => {
           this.authenticate(account);
 
           // After retrieve the account info, the language will be changed to
           // the user's preferred language configured in the account setting
-          if (account?.langKey) {
-            const langKey = this.sessionStorage.retrieve('locale') ?? account.langKey;
-            this.translateService.use(langKey);
+          if (account && account.langKey) {
+            const langKey = this.sessionStorage.retrieve('locale') || account.langKey;
+            this.languageService.changeLanguage(langKey);
           }
 
           if (account) {
@@ -77,11 +78,11 @@ export class AccountService {
   }
 
   getImageUrl(): string {
-    return this.userIdentity?.imageUrl ?? '';
+    return this.userIdentity ? this.userIdentity.imageUrl : '';
   }
 
   private fetch(): Observable<Account> {
-    return this.http.get<Account>(this.applicationConfigService.getEndpointFor('api/account'));
+    return this.http.get<Account>(SERVER_API_URL + 'api/account');
   }
 
   private navigateToStoredUrl(): void {

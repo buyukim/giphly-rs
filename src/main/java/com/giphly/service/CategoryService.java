@@ -1,15 +1,18 @@
 package com.giphly.service;
 
 import com.giphly.domain.Category;
-import java.util.List;
-import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Service Interface for managing {@link Category}.
  */
 public interface CategoryService {
+
     /**
      * Save a category.
      *
@@ -17,14 +20,6 @@ public interface CategoryService {
      * @return the persisted entity.
      */
     Category save(Category category);
-
-    /**
-     * Partially updates a category.
-     *
-     * @param category the entity to update partially.
-     * @return the persisted entity.
-     */
-    Optional<Category> partialUpdate(Category category);
 
     /**
      * Get all the categories.
@@ -36,10 +31,10 @@ public interface CategoryService {
     /**
      * Get all the categories with eager load of many-to-many relationships.
      *
-     * @param pageable the pagination information.
      * @return the list of entities.
      */
     Page<Category> findAllWithEagerRelationships(Pageable pageable);
+
 
     /**
      * Get the "id" category.

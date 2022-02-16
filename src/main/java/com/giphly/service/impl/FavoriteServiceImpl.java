@@ -1,14 +1,16 @@
 package com.giphly.service.impl;
 
+import com.giphly.service.FavoriteService;
 import com.giphly.domain.Favorite;
 import com.giphly.repository.FavoriteRepository;
-import com.giphly.service.FavoriteService;
-import java.util.List;
-import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing {@link Favorite}.
@@ -25,26 +27,23 @@ public class FavoriteServiceImpl implements FavoriteService {
         this.favoriteRepository = favoriteRepository;
     }
 
+    /**
+     * Save a favorite.
+     *
+     * @param favorite the entity to save.
+     * @return the persisted entity.
+     */
     @Override
     public Favorite save(Favorite favorite) {
         log.debug("Request to save Favorite : {}", favorite);
         return favoriteRepository.save(favorite);
     }
 
-    @Override
-    public Optional<Favorite> partialUpdate(Favorite favorite) {
-        log.debug("Request to partially update Favorite : {}", favorite);
-
-        return favoriteRepository
-            .findById(favorite.getId())
-            .map(
-                existingFavorite -> {
-                    return existingFavorite;
-                }
-            )
-            .map(favoriteRepository::save);
-    }
-
+    /**
+     * Get all the favorites.
+     *
+     * @return the list of entities.
+     */
     @Override
     @Transactional(readOnly = true)
     public List<Favorite> findAll() {
@@ -52,6 +51,13 @@ public class FavoriteServiceImpl implements FavoriteService {
         return favoriteRepository.findAll();
     }
 
+
+    /**
+     * Get one favorite by id.
+     *
+     * @param id the id of the entity.
+     * @return the entity.
+     */
     @Override
     @Transactional(readOnly = true)
     public Optional<Favorite> findOne(Long id) {
@@ -59,9 +65,15 @@ public class FavoriteServiceImpl implements FavoriteService {
         return favoriteRepository.findById(id);
     }
 
+    /**
+     * Delete the favorite by id.
+     *
+     * @param id the id of the entity.
+     */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Favorite : {}", id);
+
         favoriteRepository.deleteById(id);
     }
 }

@@ -1,14 +1,13 @@
 package com.giphly.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import com.giphly.web.rest.TestUtil;
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import com.giphly.web.rest.TestUtil;
 
-class CategoryTest {
+public class CategoryTest {
 
     @Test
-    void equalsVerifier() throws Exception {
+    public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Category.class);
         Category category1 = new Category();
         category1.setId(1L);

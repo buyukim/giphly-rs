@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import { SharedModule } from 'app/shared/shared.module';
-import { FavoriteComponent } from './list/favorite.component';
-import { FavoriteDetailComponent } from './detail/favorite-detail.component';
-import { FavoriteUpdateComponent } from './update/favorite-update.component';
-import { FavoriteDeleteDialogComponent } from './delete/favorite-delete-dialog.component';
-import { FavoriteRoutingModule } from './route/favorite-routing.module';
+import { GiphlySharedModule } from 'app/shared/shared.module';
+import { FavoriteComponent } from './favorite.component';
+import { FavoriteDetailComponent } from './favorite-detail.component';
+import { FavoriteUpdateComponent } from './favorite-update.component';
+import { FavoriteDeleteDialogComponent } from './favorite-delete-dialog.component';
+import { favoriteRoute } from './favorite.route';
 
 @NgModule({
-  imports: [SharedModule, FavoriteRoutingModule],
+  imports: [GiphlySharedModule, RouterModule.forChild(favoriteRoute)],
   declarations: [FavoriteComponent, FavoriteDetailComponent, FavoriteUpdateComponent, FavoriteDeleteDialogComponent],
   entryComponents: [FavoriteDeleteDialogComponent],
 })
-export class FavoriteModule {}
+export class GiphlyFavoriteModule {}

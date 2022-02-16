@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
-import { SharedModule } from 'app/shared/shared.module';
-import { CategoryComponent } from './list/category.component';
-import { CategoryDetailComponent } from './detail/category-detail.component';
-import { CategoryUpdateComponent } from './update/category-update.component';
-import { CategoryDeleteDialogComponent } from './delete/category-delete-dialog.component';
-import { CategoryRoutingModule } from './route/category-routing.module';
+import { GiphlySharedModule } from 'app/shared/shared.module';
+import { CategoryComponent } from './category.component';
+import { CategoryDetailComponent } from './category-detail.component';
+import { CategoryUpdateComponent } from './category-update.component';
+import { CategoryDeleteDialogComponent } from './category-delete-dialog.component';
+import { categoryRoute } from './category.route';
 
 @NgModule({
-  imports: [SharedModule, CategoryRoutingModule],
+  imports: [GiphlySharedModule, RouterModule.forChild(categoryRoute)],
   declarations: [CategoryComponent, CategoryDetailComponent, CategoryUpdateComponent, CategoryDeleteDialogComponent],
   entryComponents: [CategoryDeleteDialogComponent],
 })
-export class CategoryModule {}
+export class GiphlyCategoryModule {}

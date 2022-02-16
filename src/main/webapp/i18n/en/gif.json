@@ -3,7 +3,6 @@
     "gif": {
       "home": {
         "title": "Gifs",
-        "refreshListLabel": "Refresh list",
         "createLabel": "Create a new Gif",
         "createOrEditLabel": "Create or edit a Gif",
         "notFound": "No Gifs found"
@@ -17,7 +16,6 @@
       "detail": {
         "title": "Gif"
       },
-      "id": "ID",
       "giphyGifId": "Giphy Gif Id",
       "category": "Category"
     }

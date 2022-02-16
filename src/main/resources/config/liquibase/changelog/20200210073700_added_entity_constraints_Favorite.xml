@@ -2,22 +2,23 @@
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
     <!--
         Added the constraints for entity Favorite.
     -->
     <changeSet id="20200210073700-2" author="jhipster">
-
+        
         <addForeignKeyConstraint baseColumnNames="gif_id"
                                  baseTableName="favorite"
-                                 constraintName="fk_favorite__gif_id"
+                                 constraintName="fk_favorite_gif_id"
                                  referencedColumnNames="id"
                                  referencedTableName="gif"/>
 
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="favorite"
-                                 constraintName="fk_favorite__user_id"
+                                 constraintName="fk_favorite_user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
+
     </changeSet>
 </databaseChangeLog>

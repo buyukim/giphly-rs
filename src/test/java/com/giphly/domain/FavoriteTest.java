@@ -1,14 +1,13 @@
 package com.giphly.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import com.giphly.web.rest.TestUtil;
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import com.giphly.web.rest.TestUtil;
 
-class FavoriteTest {
+public class FavoriteTest {
 
     @Test
-    void equalsVerifier() throws Exception {
+    public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Favorite.class);
         Favorite favorite1 = new Favorite();
         favorite1.setId(1L);
