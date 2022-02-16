@@ -27,23 +27,12 @@ public class GifServiceImpl implements GifService {
         this.gifRepository = gifRepository;
     }
 
-    /**
-     * Save a gif.
-     *
-     * @param gif the entity to save.
-     * @return the persisted entity.
-     */
     @Override
     public Gif save(Gif gif) {
         log.debug("Request to save Gif : {}", gif);
         return gifRepository.save(gif);
     }
 
-    /**
-     * Get all the gifs.
-     *
-     * @return the list of entities.
-     */
     @Override
     @Transactional(readOnly = true)
     public List<Gif> findAll() {
@@ -52,12 +41,6 @@ public class GifServiceImpl implements GifService {
     }
 
 
-    /**
-     * Get one gif by id.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
     @Override
     @Transactional(readOnly = true)
     public Optional<Gif> findOne(Long id) {
@@ -65,11 +48,6 @@ public class GifServiceImpl implements GifService {
         return gifRepository.findById(id);
     }
 
-    /**
-     * Delete the gif by id.
-     *
-     * @param id the id of the entity.
-     */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Gif : {}", id);
