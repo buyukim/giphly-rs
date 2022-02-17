@@ -10,154 +10,140 @@
  * Do not edit the class manually.
  */
 
-
 package com.giphly.client.giphy.api.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
  * The Pagination Object contains information relating to the number of total results available as well as the number of results fetched and their relative positions.
  */
-@ApiModel(description = "The Pagination Object contains information relating to the number of total results available as well as the number of results fetched and their relative positions. ")
-@JsonPropertyOrder({
-  Pagination.JSON_PROPERTY_COUNT,
-  Pagination.JSON_PROPERTY_OFFSET,
-  Pagination.JSON_PROPERTY_TOTAL_COUNT
-})
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-10T13:51:22.963150-06:00[America/Chicago]")
+@Schema(
+    description = "The Pagination Object contains information relating to the number of total results available as well as the number of results fetched and their relative positions. "
+)
+@JsonPropertyOrder({ Pagination.JSON_PROPERTY_COUNT, Pagination.JSON_PROPERTY_OFFSET, Pagination.JSON_PROPERTY_TOTAL_COUNT })
+@javax.annotation.processing.Generated(
+    value = "org.openapitools.codegen.languages.JavaClientCodegen",
+    date = "2020-02-10T13:51:22.963150-06:00[America/Chicago]"
+)
 public class Pagination {
-  public static final String JSON_PROPERTY_COUNT = "count";
-  private Integer count;
 
-  public static final String JSON_PROPERTY_OFFSET = "offset";
-  private Integer offset;
+    public static final String JSON_PROPERTY_COUNT = "count";
+    private Integer count;
 
-  public static final String JSON_PROPERTY_TOTAL_COUNT = "total_count";
-  private Integer totalCount;
+    public static final String JSON_PROPERTY_OFFSET = "offset";
+    private Integer offset;
 
+    public static final String JSON_PROPERTY_TOTAL_COUNT = "total_count";
+    private Integer totalCount;
 
-  public Pagination count(Integer count) {
-
-    this.count = count;
-    return this;
-  }
-
-   /**
-   * Total number of items returned.
-   * @return count
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "25", value = "Total number of items returned.")
-  @JsonProperty(JSON_PROPERTY_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getCount() {
-    return count;
-  }
-
-
-  public void setCount(Integer count) {
-    this.count = count;
-  }
-
-
-  public Pagination offset(Integer offset) {
-
-    this.offset = offset;
-    return this;
-  }
-
-   /**
-   * Position in pagination.
-   * @return offset
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "75", value = "Position in pagination.")
-  @JsonProperty(JSON_PROPERTY_OFFSET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getOffset() {
-    return offset;
-  }
-
-
-  public void setOffset(Integer offset) {
-    this.offset = offset;
-  }
-
-
-  public Pagination totalCount(Integer totalCount) {
-
-    this.totalCount = totalCount;
-    return this;
-  }
-
-   /**
-   * Total number of items available.
-   * @return totalCount
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "250", value = "Total number of items available.")
-  @JsonProperty(JSON_PROPERTY_TOTAL_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getTotalCount() {
-    return totalCount;
-  }
-
-
-  public void setTotalCount(Integer totalCount) {
-    this.totalCount = totalCount;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public Pagination count(Integer count) {
+        this.count = count;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Total number of items returned.
+     * @return count
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "25", description = "Total number of items returned.")
+    @JsonProperty(JSON_PROPERTY_COUNT)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Integer getCount() {
+        return count;
     }
-    Pagination pagination = (Pagination) o;
-    return Objects.equals(this.count, pagination.count) &&
-        Objects.equals(this.offset, pagination.offset) &&
-        Objects.equals(this.totalCount, pagination.totalCount);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(count, offset, totalCount);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Pagination {\n");
-    sb.append("    count: ").append(toIndentedString(count)).append("\n");
-    sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
-    sb.append("    totalCount: ").append(toIndentedString(totalCount)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setCount(Integer count) {
+        this.count = count;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public Pagination offset(Integer offset) {
+        this.offset = offset;
+        return this;
+    }
+
+    /**
+     * Position in pagination.
+     * @return offset
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "75", description = "Position in pagination.")
+    @JsonProperty(JSON_PROPERTY_OFFSET)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Integer getOffset() {
+        return offset;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public Pagination totalCount(Integer totalCount) {
+        this.totalCount = totalCount;
+        return this;
+    }
+
+    /**
+     * Total number of items available.
+     * @return totalCount
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "250", description = "Total number of items available.")
+    @JsonProperty(JSON_PROPERTY_TOTAL_COUNT)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Integer getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(Integer totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Pagination pagination = (Pagination) o;
+        return (
+            Objects.equals(this.count, pagination.count) &&
+            Objects.equals(this.offset, pagination.offset) &&
+            Objects.equals(this.totalCount, pagination.totalCount)
+        );
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(count, offset, totalCount);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class Pagination {\n");
+        sb.append("    count: ").append(toIndentedString(count)).append("\n");
+        sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
+        sb.append("    totalCount: ").append(toIndentedString(totalCount)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 }
-

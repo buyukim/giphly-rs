@@ -10,12 +10,10 @@
  * Do not edit the class manually.
  */
 
-
 package com.giphly.client.giphy.api.model;
 
 import com.fasterxml.jackson.annotation.*;
-import io.swagger.annotations.ApiModelProperty;
-
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,715 +21,663 @@ import java.util.Objects;
 /**
  * Gif
  */
-@JsonPropertyOrder({
-  Gif.JSON_PROPERTY_BITLY_URL,
-  Gif.JSON_PROPERTY_CONTENT_URL,
-  Gif.JSON_PROPERTY_CREATE_DATETIME,
-  Gif.JSON_PROPERTY_EMBDED_URL,
-  Gif.JSON_PROPERTY_FEATURED_TAGS,
-  Gif.JSON_PROPERTY_ID,
-  Gif.JSON_PROPERTY_IMAGES,
-  Gif.JSON_PROPERTY_IMPORT_DATETIME,
-  Gif.JSON_PROPERTY_RATING,
-  Gif.JSON_PROPERTY_SLUG,
-  Gif.JSON_PROPERTY_SOURCE,
-  Gif.JSON_PROPERTY_SOURCE_POST_URL,
-  Gif.JSON_PROPERTY_SOURCE_TLD,
-  Gif.JSON_PROPERTY_TAGS,
-  Gif.JSON_PROPERTY_TRENDING_DATETIME,
-  Gif.JSON_PROPERTY_TYPE,
-  Gif.JSON_PROPERTY_UPDATE_DATETIME,
-  Gif.JSON_PROPERTY_URL,
-  Gif.JSON_PROPERTY_USER,
-  Gif.JSON_PROPERTY_USERNAME
-})
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-10T13:51:22.963150-06:00[America/Chicago]")
+@JsonPropertyOrder(
+    {
+        Gif.JSON_PROPERTY_BITLY_URL,
+        Gif.JSON_PROPERTY_CONTENT_URL,
+        Gif.JSON_PROPERTY_CREATE_DATETIME,
+        Gif.JSON_PROPERTY_EMBDED_URL,
+        Gif.JSON_PROPERTY_FEATURED_TAGS,
+        Gif.JSON_PROPERTY_ID,
+        Gif.JSON_PROPERTY_IMAGES,
+        Gif.JSON_PROPERTY_IMPORT_DATETIME,
+        Gif.JSON_PROPERTY_RATING,
+        Gif.JSON_PROPERTY_SLUG,
+        Gif.JSON_PROPERTY_SOURCE,
+        Gif.JSON_PROPERTY_SOURCE_POST_URL,
+        Gif.JSON_PROPERTY_SOURCE_TLD,
+        Gif.JSON_PROPERTY_TAGS,
+        Gif.JSON_PROPERTY_TRENDING_DATETIME,
+        Gif.JSON_PROPERTY_TYPE,
+        Gif.JSON_PROPERTY_UPDATE_DATETIME,
+        Gif.JSON_PROPERTY_URL,
+        Gif.JSON_PROPERTY_USER,
+        Gif.JSON_PROPERTY_USERNAME,
+    }
+)
+@javax.annotation.processing.Generated(
+    value = "org.openapitools.codegen.languages.JavaClientCodegen",
+    date = "2020-02-10T13:51:22.963150-06:00[America/Chicago]"
+)
 public class Gif {
-  public static final String JSON_PROPERTY_BITLY_URL = "bitly_url";
-  private String bitlyUrl;
 
-  public static final String JSON_PROPERTY_CONTENT_URL = "content_url";
-  private String contentUrl;
+    public static final String JSON_PROPERTY_BITLY_URL = "bitly_url";
+    private String bitlyUrl;
 
-  public static final String JSON_PROPERTY_CREATE_DATETIME = "create_datetime";
-  private String createDatetime;
+    public static final String JSON_PROPERTY_CONTENT_URL = "content_url";
+    private String contentUrl;
 
-  public static final String JSON_PROPERTY_EMBDED_URL = "embded_url";
-  private String embdedUrl;
+    public static final String JSON_PROPERTY_CREATE_DATETIME = "create_datetime";
+    private String createDatetime;
 
-  public static final String JSON_PROPERTY_FEATURED_TAGS = "featured_tags";
-  private List<String> featuredTags = null;
+    public static final String JSON_PROPERTY_EMBDED_URL = "embded_url";
+    private String embdedUrl;
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+    public static final String JSON_PROPERTY_FEATURED_TAGS = "featured_tags";
+    private List<String> featuredTags = null;
 
-  public static final String JSON_PROPERTY_IMAGES = "images";
-  private GifImages images;
+    public static final String JSON_PROPERTY_ID = "id";
+    private String id;
 
-  public static final String JSON_PROPERTY_IMPORT_DATETIME = "import_datetime";
-  private String importDatetime;
+    public static final String JSON_PROPERTY_IMAGES = "images";
+    private GifImages images;
 
-  public static final String JSON_PROPERTY_RATING = "rating";
-  private String rating;
+    public static final String JSON_PROPERTY_IMPORT_DATETIME = "import_datetime";
+    private String importDatetime;
 
-  public static final String JSON_PROPERTY_SLUG = "slug";
-  private String slug;
+    public static final String JSON_PROPERTY_RATING = "rating";
+    private String rating;
 
-  public static final String JSON_PROPERTY_SOURCE = "source";
-  private String source;
+    public static final String JSON_PROPERTY_SLUG = "slug";
+    private String slug;
 
-  public static final String JSON_PROPERTY_SOURCE_POST_URL = "source_post_url";
-  private String sourcePostUrl;
+    public static final String JSON_PROPERTY_SOURCE = "source";
+    private String source;
 
-  public static final String JSON_PROPERTY_SOURCE_TLD = "source_tld";
-  private String sourceTld;
+    public static final String JSON_PROPERTY_SOURCE_POST_URL = "source_post_url";
+    private String sourcePostUrl;
 
-  public static final String JSON_PROPERTY_TAGS = "tags";
-  private List<String> tags = null;
+    public static final String JSON_PROPERTY_SOURCE_TLD = "source_tld";
+    private String sourceTld;
 
-  public static final String JSON_PROPERTY_TRENDING_DATETIME = "trending_datetime";
-  private String trendingDatetime;
+    public static final String JSON_PROPERTY_TAGS = "tags";
+    private List<String> tags = null;
 
-  /**
-   * Type of the gif. By default, this is almost always gif
-   */
-  public enum TypeEnum {
-    GIF("gif");
+    public static final String JSON_PROPERTY_TRENDING_DATETIME = "trending_datetime";
+    private String trendingDatetime;
 
-    private String value;
+    /**
+     * Type of the gif. By default, this is almost always gif
+     */
+    public enum TypeEnum {
+        GIF("gif");
 
-    TypeEnum(String value) {
-      this.value = value;
+        private String value;
+
+        TypeEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static TypeEnum fromValue(String value) {
+            for (TypeEnum b : TypeEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
     }
 
-    @JsonValue
-    public String getValue() {
-      return value;
+    public static final String JSON_PROPERTY_TYPE = "type";
+    private TypeEnum type = TypeEnum.GIF;
+
+    public static final String JSON_PROPERTY_UPDATE_DATETIME = "update_datetime";
+    private String updateDatetime;
+
+    public static final String JSON_PROPERTY_URL = "url";
+    private String url;
+
+    public static final String JSON_PROPERTY_USER = "user";
+    private User user;
+
+    public static final String JSON_PROPERTY_USERNAME = "username";
+    private String username;
+
+    public Gif bitlyUrl(String bitlyUrl) {
+        this.bitlyUrl = bitlyUrl;
+        return this;
+    }
+
+    /**
+     * The unique bit.ly URL for this GIF
+     * @return bitlyUrl
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "https://gph.is/1gsWDcL", description = "The unique bit.ly URL for this GIF")
+    @JsonProperty(JSON_PROPERTY_BITLY_URL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getBitlyUrl() {
+        return bitlyUrl;
+    }
+
+    public void setBitlyUrl(String bitlyUrl) {
+        this.bitlyUrl = bitlyUrl;
+    }
+
+    public Gif contentUrl(String contentUrl) {
+        this.contentUrl = contentUrl;
+        return this;
+    }
+
+    /**
+     * Currently unused
+     * @return contentUrl
+     **/
+    @javax.annotation.Nullable
+    @Schema(description = "Currently unused")
+    @JsonProperty(JSON_PROPERTY_CONTENT_URL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getContentUrl() {
+        return contentUrl;
+    }
+
+    public void setContentUrl(String contentUrl) {
+        this.contentUrl = contentUrl;
+    }
+
+    public Gif createDatetime(String createDatetime) {
+        this.createDatetime = createDatetime;
+        return this;
+    }
+
+    /**
+     * The date this GIF was added to the GIPHY database.
+     * @return createDatetime
+     **/
+    @javax.annotation.Nullable
+    @Schema(description = "The date this GIF was added to the GIPHY database.")
+    @JsonProperty(JSON_PROPERTY_CREATE_DATETIME)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getCreateDatetime() {
+        return createDatetime;
+    }
+
+    public void setCreateDatetime(String createDatetime) {
+        this.createDatetime = createDatetime;
+    }
+
+    public Gif embdedUrl(String embdedUrl) {
+        this.embdedUrl = embdedUrl;
+        return this;
+    }
+
+    /**
+     * A URL used for embedding this GIF
+     * @return embdedUrl
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "https://giphy.com/embed/YsTs5ltWtEhnq", description = "A URL used for embedding this GIF")
+    @JsonProperty(JSON_PROPERTY_EMBDED_URL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getEmbdedUrl() {
+        return embdedUrl;
+    }
+
+    public void setEmbdedUrl(String embdedUrl) {
+        this.embdedUrl = embdedUrl;
+    }
+
+    public Gif featuredTags(List<String> featuredTags) {
+        this.featuredTags = featuredTags;
+        return this;
+    }
+
+    public Gif addFeaturedTagsItem(String featuredTagsItem) {
+        if (this.featuredTags == null) {
+            this.featuredTags = new ArrayList<>();
+        }
+        this.featuredTags.add(featuredTagsItem);
+        return this;
+    }
+
+    /**
+     * An array of featured tags for this GIF (Note: Not available when using the Public Beta Key)
+     * @return featuredTags
+     **/
+    @javax.annotation.Nullable
+    @Schema(description = "An array of featured tags for this GIF (Note: Not available when using the Public Beta Key) ")
+    @JsonProperty(JSON_PROPERTY_FEATURED_TAGS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public List<String> getFeaturedTags() {
+        return featuredTags;
+    }
+
+    public void setFeaturedTags(List<String> featuredTags) {
+        this.featuredTags = featuredTags;
+    }
+
+    public Gif id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * This GIF&#39;s unique ID
+     * @return id
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "YsTs5ltWtEhnq", description = "This GIF's unique ID")
+    @JsonProperty(JSON_PROPERTY_ID)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Gif images(GifImages images) {
+        this.images = images;
+        return this;
+    }
+
+    /**
+     * Get images
+     * @return images
+     **/
+    @javax.annotation.Nullable
+    @Schema
+    @JsonProperty(JSON_PROPERTY_IMAGES)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public GifImages getImages() {
+        return images;
+    }
+
+    public void setImages(GifImages images) {
+        this.images = images;
+    }
+
+    public Gif importDatetime(String importDatetime) {
+        this.importDatetime = importDatetime;
+        return this;
+    }
+
+    /**
+     * The creation or upload date from this GIF&#39;s source.
+     * @return importDatetime
+     **/
+    @javax.annotation.Nullable
+    @Schema(description = "The creation or upload date from this GIF's source.")
+    @JsonProperty(JSON_PROPERTY_IMPORT_DATETIME)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getImportDatetime() {
+        return importDatetime;
+    }
+
+    public void setImportDatetime(String importDatetime) {
+        this.importDatetime = importDatetime;
+    }
+
+    public Gif rating(String rating) {
+        this.rating = rating;
+        return this;
+    }
+
+    /**
+     * The MPAA-style rating for this content. Examples include Y, G, PG, PG-13 and R
+     * @return rating
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "g", description = "The MPAA-style rating for this content. Examples include Y, G, PG, PG-13 and R")
+    @JsonProperty(JSON_PROPERTY_RATING)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public Gif slug(String slug) {
+        this.slug = slug;
+        return this;
+    }
+
+    /**
+     * The unique slug used in this GIF&#39;s URL
+     * @return slug
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "confused-flying-YsTs5ltWtEhnq", description = "The unique slug used in this GIF's URL")
+    @JsonProperty(JSON_PROPERTY_SLUG)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public Gif source(String source) {
+        this.source = source;
+        return this;
+    }
+
+    /**
+     * The page on which this GIF was found
+     * @return source
+     **/
+    @javax.annotation.Nullable
+    @Schema(
+        example = "https://www.reddit.com/r/reactiongifs/comments/1xpyaa/superman_goes_to_hollywood/",
+        description = "The page on which this GIF was found"
+    )
+    @JsonProperty(JSON_PROPERTY_SOURCE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public Gif sourcePostUrl(String sourcePostUrl) {
+        this.sourcePostUrl = sourcePostUrl;
+        return this;
+    }
+
+    /**
+     * The URL of the webpage on which this GIF was found.
+     * @return sourcePostUrl
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "https://cheezburger.com/5282328320", description = "The URL of the webpage on which this GIF was found.")
+    @JsonProperty(JSON_PROPERTY_SOURCE_POST_URL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getSourcePostUrl() {
+        return sourcePostUrl;
+    }
+
+    public void setSourcePostUrl(String sourcePostUrl) {
+        this.sourcePostUrl = sourcePostUrl;
+    }
+
+    public Gif sourceTld(String sourceTld) {
+        this.sourceTld = sourceTld;
+        return this;
+    }
+
+    /**
+     * The top level domain of the source URL.
+     * @return sourceTld
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "cheezburger.com", description = "The top level domain of the source URL.")
+    @JsonProperty(JSON_PROPERTY_SOURCE_TLD)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getSourceTld() {
+        return sourceTld;
+    }
+
+    public void setSourceTld(String sourceTld) {
+        this.sourceTld = sourceTld;
+    }
+
+    public Gif tags(List<String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    public Gif addTagsItem(String tagsItem) {
+        if (this.tags == null) {
+            this.tags = new ArrayList<>();
+        }
+        this.tags.add(tagsItem);
+        return this;
+    }
+
+    /**
+     * An array of tags for this GIF (Note: Not available when using the Public Beta Key)
+     * @return tags
+     **/
+    @javax.annotation.Nullable
+    @Schema(description = "An array of tags for this GIF (Note: Not available when using the Public Beta Key) ")
+    @JsonProperty(JSON_PROPERTY_TAGS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public Gif trendingDatetime(String trendingDatetime) {
+        this.trendingDatetime = trendingDatetime;
+        return this;
+    }
+
+    /**
+     * The date on which this gif was marked trending, if applicable.
+     * @return trendingDatetime
+     **/
+    @javax.annotation.Nullable
+    @Schema(description = "The date on which this gif was marked trending, if applicable.")
+    @JsonProperty(JSON_PROPERTY_TRENDING_DATETIME)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getTrendingDatetime() {
+        return trendingDatetime;
+    }
+
+    public void setTrendingDatetime(String trendingDatetime) {
+        this.trendingDatetime = trendingDatetime;
+    }
+
+    public Gif type(TypeEnum type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * Type of the gif. By default, this is almost always gif
+     * @return type
+     **/
+    @javax.annotation.Nullable
+    @Schema(description = "Type of the gif. By default, this is almost always gif")
+    @JsonProperty(JSON_PROPERTY_TYPE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public TypeEnum getType() {
+        return type;
+    }
+
+    public void setType(TypeEnum type) {
+        this.type = type;
+    }
+
+    public Gif updateDatetime(String updateDatetime) {
+        this.updateDatetime = updateDatetime;
+        return this;
+    }
+
+    /**
+     * The date on which this GIF was last updated.
+     * @return updateDatetime
+     **/
+    @javax.annotation.Nullable
+    @Schema(description = "The date on which this GIF was last updated.")
+    @JsonProperty(JSON_PROPERTY_UPDATE_DATETIME)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getUpdateDatetime() {
+        return updateDatetime;
+    }
+
+    public void setUpdateDatetime(String updateDatetime) {
+        this.updateDatetime = updateDatetime;
+    }
+
+    public Gif url(String url) {
+        this.url = url;
+        return this;
+    }
+
+    /**
+     * The unique URL for this GIF
+     * @return url
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "https://giphy.com/gifs/confused-flying-YsTs5ltWtEhnq", description = "The unique URL for this GIF")
+    @JsonProperty(JSON_PROPERTY_URL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Gif user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    /**
+     * Get user
+     * @return user
+     **/
+    @javax.annotation.Nullable
+    @Schema
+    @JsonProperty(JSON_PROPERTY_USER)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Gif username(String username) {
+        this.username = username;
+        return this;
+    }
+
+    /**
+     * The username this GIF is attached to, if applicable
+     * @return username
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "JoeCool4000", description = "The username this GIF is attached to, if applicable")
+    @JsonProperty(JSON_PROPERTY_USERNAME)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Gif gif = (Gif) o;
+        return (
+            Objects.equals(this.bitlyUrl, gif.bitlyUrl) &&
+            Objects.equals(this.contentUrl, gif.contentUrl) &&
+            Objects.equals(this.createDatetime, gif.createDatetime) &&
+            Objects.equals(this.embdedUrl, gif.embdedUrl) &&
+            Objects.equals(this.featuredTags, gif.featuredTags) &&
+            Objects.equals(this.id, gif.id) &&
+            Objects.equals(this.images, gif.images) &&
+            Objects.equals(this.importDatetime, gif.importDatetime) &&
+            Objects.equals(this.rating, gif.rating) &&
+            Objects.equals(this.slug, gif.slug) &&
+            Objects.equals(this.source, gif.source) &&
+            Objects.equals(this.sourcePostUrl, gif.sourcePostUrl) &&
+            Objects.equals(this.sourceTld, gif.sourceTld) &&
+            Objects.equals(this.tags, gif.tags) &&
+            Objects.equals(this.trendingDatetime, gif.trendingDatetime) &&
+            Objects.equals(this.type, gif.type) &&
+            Objects.equals(this.updateDatetime, gif.updateDatetime) &&
+            Objects.equals(this.url, gif.url) &&
+            Objects.equals(this.user, gif.user) &&
+            Objects.equals(this.username, gif.username)
+        );
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+            bitlyUrl,
+            contentUrl,
+            createDatetime,
+            embdedUrl,
+            featuredTags,
+            id,
+            images,
+            importDatetime,
+            rating,
+            slug,
+            source,
+            sourcePostUrl,
+            sourceTld,
+            tags,
+            trendingDatetime,
+            type,
+            updateDatetime,
+            url,
+            user,
+            username
+        );
     }
 
     @Override
     public String toString() {
-      return String.valueOf(value);
+        StringBuilder sb = new StringBuilder();
+        sb.append("class Gif {\n");
+        sb.append("    bitlyUrl: ").append(toIndentedString(bitlyUrl)).append("\n");
+        sb.append("    contentUrl: ").append(toIndentedString(contentUrl)).append("\n");
+        sb.append("    createDatetime: ").append(toIndentedString(createDatetime)).append("\n");
+        sb.append("    embdedUrl: ").append(toIndentedString(embdedUrl)).append("\n");
+        sb.append("    featuredTags: ").append(toIndentedString(featuredTags)).append("\n");
+        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    images: ").append(toIndentedString(images)).append("\n");
+        sb.append("    importDatetime: ").append(toIndentedString(importDatetime)).append("\n");
+        sb.append("    rating: ").append(toIndentedString(rating)).append("\n");
+        sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
+        sb.append("    source: ").append(toIndentedString(source)).append("\n");
+        sb.append("    sourcePostUrl: ").append(toIndentedString(sourcePostUrl)).append("\n");
+        sb.append("    sourceTld: ").append(toIndentedString(sourceTld)).append("\n");
+        sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+        sb.append("    trendingDatetime: ").append(toIndentedString(trendingDatetime)).append("\n");
+        sb.append("    type: ").append(toIndentedString(type)).append("\n");
+        sb.append("    updateDatetime: ").append(toIndentedString(updateDatetime)).append("\n");
+        sb.append("    url: ").append(toIndentedString(url)).append("\n");
+        sb.append("    user: ").append(toIndentedString(user)).append("\n");
+        sb.append("    username: ").append(toIndentedString(username)).append("\n");
+        sb.append("}");
+        return sb.toString();
     }
 
-    @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
         }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        return o.toString().replace("\n", "\n    ");
     }
-  }
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TypeEnum type = TypeEnum.GIF;
-
-  public static final String JSON_PROPERTY_UPDATE_DATETIME = "update_datetime";
-  private String updateDatetime;
-
-  public static final String JSON_PROPERTY_URL = "url";
-  private String url;
-
-  public static final String JSON_PROPERTY_USER = "user";
-  private User user;
-
-  public static final String JSON_PROPERTY_USERNAME = "username";
-  private String username;
-
-
-  public Gif bitlyUrl(String bitlyUrl) {
-
-    this.bitlyUrl = bitlyUrl;
-    return this;
-  }
-
-   /**
-   * The unique bit.ly URL for this GIF
-   * @return bitlyUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://gph.is/1gsWDcL", value = "The unique bit.ly URL for this GIF")
-  @JsonProperty(JSON_PROPERTY_BITLY_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getBitlyUrl() {
-    return bitlyUrl;
-  }
-
-
-  public void setBitlyUrl(String bitlyUrl) {
-    this.bitlyUrl = bitlyUrl;
-  }
-
-
-  public Gif contentUrl(String contentUrl) {
-
-    this.contentUrl = contentUrl;
-    return this;
-  }
-
-   /**
-   * Currently unused
-   * @return contentUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Currently unused")
-  @JsonProperty(JSON_PROPERTY_CONTENT_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getContentUrl() {
-    return contentUrl;
-  }
-
-
-  public void setContentUrl(String contentUrl) {
-    this.contentUrl = contentUrl;
-  }
-
-
-  public Gif createDatetime(String createDatetime) {
-
-    this.createDatetime = createDatetime;
-    return this;
-  }
-
-   /**
-   * The date this GIF was added to the GIPHY database.
-   * @return createDatetime
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The date this GIF was added to the GIPHY database.")
-  @JsonProperty(JSON_PROPERTY_CREATE_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCreateDatetime() {
-    return createDatetime;
-  }
-
-
-  public void setCreateDatetime(String createDatetime) {
-    this.createDatetime = createDatetime;
-  }
-
-
-  public Gif embdedUrl(String embdedUrl) {
-
-    this.embdedUrl = embdedUrl;
-    return this;
-  }
-
-   /**
-   * A URL used for embedding this GIF
-   * @return embdedUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://giphy.com/embed/YsTs5ltWtEhnq", value = "A URL used for embedding this GIF")
-  @JsonProperty(JSON_PROPERTY_EMBDED_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getEmbdedUrl() {
-    return embdedUrl;
-  }
-
-
-  public void setEmbdedUrl(String embdedUrl) {
-    this.embdedUrl = embdedUrl;
-  }
-
-
-  public Gif featuredTags(List<String> featuredTags) {
-
-    this.featuredTags = featuredTags;
-    return this;
-  }
-
-  public Gif addFeaturedTagsItem(String featuredTagsItem) {
-    if (this.featuredTags == null) {
-      this.featuredTags = new ArrayList<>();
-    }
-    this.featuredTags.add(featuredTagsItem);
-    return this;
-  }
-
-   /**
-   * An array of featured tags for this GIF (Note: Not available when using the Public Beta Key)
-   * @return featuredTags
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array of featured tags for this GIF (Note: Not available when using the Public Beta Key) ")
-  @JsonProperty(JSON_PROPERTY_FEATURED_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getFeaturedTags() {
-    return featuredTags;
-  }
-
-
-  public void setFeaturedTags(List<String> featuredTags) {
-    this.featuredTags = featuredTags;
-  }
-
-
-  public Gif id(String id) {
-
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * This GIF&#39;s unique ID
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "YsTs5ltWtEhnq", value = "This GIF's unique ID")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getId() {
-    return id;
-  }
-
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public Gif images(GifImages images) {
-
-    this.images = images;
-    return this;
-  }
-
-   /**
-   * Get images
-   * @return images
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_IMAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public GifImages getImages() {
-    return images;
-  }
-
-
-  public void setImages(GifImages images) {
-    this.images = images;
-  }
-
-
-  public Gif importDatetime(String importDatetime) {
-
-    this.importDatetime = importDatetime;
-    return this;
-  }
-
-   /**
-   * The creation or upload date from this GIF&#39;s source.
-   * @return importDatetime
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The creation or upload date from this GIF's source.")
-  @JsonProperty(JSON_PROPERTY_IMPORT_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getImportDatetime() {
-    return importDatetime;
-  }
-
-
-  public void setImportDatetime(String importDatetime) {
-    this.importDatetime = importDatetime;
-  }
-
-
-  public Gif rating(String rating) {
-
-    this.rating = rating;
-    return this;
-  }
-
-   /**
-   * The MPAA-style rating for this content. Examples include Y, G, PG, PG-13 and R
-   * @return rating
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "g", value = "The MPAA-style rating for this content. Examples include Y, G, PG, PG-13 and R")
-  @JsonProperty(JSON_PROPERTY_RATING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getRating() {
-    return rating;
-  }
-
-
-  public void setRating(String rating) {
-    this.rating = rating;
-  }
-
-
-  public Gif slug(String slug) {
-
-    this.slug = slug;
-    return this;
-  }
-
-   /**
-   * The unique slug used in this GIF&#39;s URL
-   * @return slug
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "confused-flying-YsTs5ltWtEhnq", value = "The unique slug used in this GIF's URL")
-  @JsonProperty(JSON_PROPERTY_SLUG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getSlug() {
-    return slug;
-  }
-
-
-  public void setSlug(String slug) {
-    this.slug = slug;
-  }
-
-
-  public Gif source(String source) {
-
-    this.source = source;
-    return this;
-  }
-
-   /**
-   * The page on which this GIF was found
-   * @return source
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://www.reddit.com/r/reactiongifs/comments/1xpyaa/superman_goes_to_hollywood/", value = "The page on which this GIF was found")
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getSource() {
-    return source;
-  }
-
-
-  public void setSource(String source) {
-    this.source = source;
-  }
-
-
-  public Gif sourcePostUrl(String sourcePostUrl) {
-
-    this.sourcePostUrl = sourcePostUrl;
-    return this;
-  }
-
-   /**
-   * The URL of the webpage on which this GIF was found.
-   * @return sourcePostUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://cheezburger.com/5282328320", value = "The URL of the webpage on which this GIF was found.")
-  @JsonProperty(JSON_PROPERTY_SOURCE_POST_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getSourcePostUrl() {
-    return sourcePostUrl;
-  }
-
-
-  public void setSourcePostUrl(String sourcePostUrl) {
-    this.sourcePostUrl = sourcePostUrl;
-  }
-
-
-  public Gif sourceTld(String sourceTld) {
-
-    this.sourceTld = sourceTld;
-    return this;
-  }
-
-   /**
-   * The top level domain of the source URL.
-   * @return sourceTld
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "cheezburger.com", value = "The top level domain of the source URL.")
-  @JsonProperty(JSON_PROPERTY_SOURCE_TLD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getSourceTld() {
-    return sourceTld;
-  }
-
-
-  public void setSourceTld(String sourceTld) {
-    this.sourceTld = sourceTld;
-  }
-
-
-  public Gif tags(List<String> tags) {
-
-    this.tags = tags;
-    return this;
-  }
-
-  public Gif addTagsItem(String tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
-    }
-    this.tags.add(tagsItem);
-    return this;
-  }
-
-   /**
-   * An array of tags for this GIF (Note: Not available when using the Public Beta Key)
-   * @return tags
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "An array of tags for this GIF (Note: Not available when using the Public Beta Key) ")
-  @JsonProperty(JSON_PROPERTY_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getTags() {
-    return tags;
-  }
-
-
-  public void setTags(List<String> tags) {
-    this.tags = tags;
-  }
-
-
-  public Gif trendingDatetime(String trendingDatetime) {
-
-    this.trendingDatetime = trendingDatetime;
-    return this;
-  }
-
-   /**
-   * The date on which this gif was marked trending, if applicable.
-   * @return trendingDatetime
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The date on which this gif was marked trending, if applicable.")
-  @JsonProperty(JSON_PROPERTY_TRENDING_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getTrendingDatetime() {
-    return trendingDatetime;
-  }
-
-
-  public void setTrendingDatetime(String trendingDatetime) {
-    this.trendingDatetime = trendingDatetime;
-  }
-
-
-  public Gif type(TypeEnum type) {
-
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Type of the gif. By default, this is almost always gif
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Type of the gif. By default, this is almost always gif")
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
-
-  public Gif updateDatetime(String updateDatetime) {
-
-    this.updateDatetime = updateDatetime;
-    return this;
-  }
-
-   /**
-   * The date on which this GIF was last updated.
-   * @return updateDatetime
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The date on which this GIF was last updated.")
-  @JsonProperty(JSON_PROPERTY_UPDATE_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getUpdateDatetime() {
-    return updateDatetime;
-  }
-
-
-  public void setUpdateDatetime(String updateDatetime) {
-    this.updateDatetime = updateDatetime;
-  }
-
-
-  public Gif url(String url) {
-
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * The unique URL for this GIF
-   * @return url
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://giphy.com/gifs/confused-flying-YsTs5ltWtEhnq", value = "The unique URL for this GIF")
-  @JsonProperty(JSON_PROPERTY_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getUrl() {
-    return url;
-  }
-
-
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
-
-  public Gif user(User user) {
-
-    this.user = user;
-    return this;
-  }
-
-   /**
-   * Get user
-   * @return user
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public User getUser() {
-    return user;
-  }
-
-
-  public void setUser(User user) {
-    this.user = user;
-  }
-
-
-  public Gif username(String username) {
-
-    this.username = username;
-    return this;
-  }
-
-   /**
-   * The username this GIF is attached to, if applicable
-   * @return username
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "JoeCool4000", value = "The username this GIF is attached to, if applicable")
-  @JsonProperty(JSON_PROPERTY_USERNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getUsername() {
-    return username;
-  }
-
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Gif gif = (Gif) o;
-    return Objects.equals(this.bitlyUrl, gif.bitlyUrl) &&
-        Objects.equals(this.contentUrl, gif.contentUrl) &&
-        Objects.equals(this.createDatetime, gif.createDatetime) &&
-        Objects.equals(this.embdedUrl, gif.embdedUrl) &&
-        Objects.equals(this.featuredTags, gif.featuredTags) &&
-        Objects.equals(this.id, gif.id) &&
-        Objects.equals(this.images, gif.images) &&
-        Objects.equals(this.importDatetime, gif.importDatetime) &&
-        Objects.equals(this.rating, gif.rating) &&
-        Objects.equals(this.slug, gif.slug) &&
-        Objects.equals(this.source, gif.source) &&
-        Objects.equals(this.sourcePostUrl, gif.sourcePostUrl) &&
-        Objects.equals(this.sourceTld, gif.sourceTld) &&
-        Objects.equals(this.tags, gif.tags) &&
-        Objects.equals(this.trendingDatetime, gif.trendingDatetime) &&
-        Objects.equals(this.type, gif.type) &&
-        Objects.equals(this.updateDatetime, gif.updateDatetime) &&
-        Objects.equals(this.url, gif.url) &&
-        Objects.equals(this.user, gif.user) &&
-        Objects.equals(this.username, gif.username);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(bitlyUrl, contentUrl, createDatetime, embdedUrl, featuredTags, id, images, importDatetime, rating, slug, source, sourcePostUrl, sourceTld, tags, trendingDatetime, type, updateDatetime, url, user, username);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Gif {\n");
-    sb.append("    bitlyUrl: ").append(toIndentedString(bitlyUrl)).append("\n");
-    sb.append("    contentUrl: ").append(toIndentedString(contentUrl)).append("\n");
-    sb.append("    createDatetime: ").append(toIndentedString(createDatetime)).append("\n");
-    sb.append("    embdedUrl: ").append(toIndentedString(embdedUrl)).append("\n");
-    sb.append("    featuredTags: ").append(toIndentedString(featuredTags)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    images: ").append(toIndentedString(images)).append("\n");
-    sb.append("    importDatetime: ").append(toIndentedString(importDatetime)).append("\n");
-    sb.append("    rating: ").append(toIndentedString(rating)).append("\n");
-    sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
-    sb.append("    sourcePostUrl: ").append(toIndentedString(sourcePostUrl)).append("\n");
-    sb.append("    sourceTld: ").append(toIndentedString(sourceTld)).append("\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
-    sb.append("    trendingDatetime: ").append(toIndentedString(trendingDatetime)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    updateDatetime: ").append(toIndentedString(updateDatetime)).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
 }
-

@@ -10,247 +10,236 @@
  * Do not edit the class manually.
  */
 
-
 package com.giphly.client.giphy.api.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
  * The User Object contains information about the user associated with a GIF and URLs to assets such as that user&#39;s avatar image, profile, and more.
  */
-@ApiModel(description = "The User Object contains information about the user associated with a GIF and URLs to assets such as that user's avatar image, profile, and more.")
-@JsonPropertyOrder({
-  User.JSON_PROPERTY_AVATAR_URL,
-  User.JSON_PROPERTY_BANNER_URL,
-  User.JSON_PROPERTY_DISPLAY_NAME,
-  User.JSON_PROPERTY_PROFILE_URL,
-  User.JSON_PROPERTY_TWITTER,
-  User.JSON_PROPERTY_USERNAME
-})
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-10T13:51:22.963150-06:00[America/Chicago]")
+@Schema(
+    description = "The User Object contains information about the user associated with a GIF and URLs to assets such as that user's avatar image, profile, and more."
+)
+@JsonPropertyOrder(
+    {
+        User.JSON_PROPERTY_AVATAR_URL,
+        User.JSON_PROPERTY_BANNER_URL,
+        User.JSON_PROPERTY_DISPLAY_NAME,
+        User.JSON_PROPERTY_PROFILE_URL,
+        User.JSON_PROPERTY_TWITTER,
+        User.JSON_PROPERTY_USERNAME,
+    }
+)
+@javax.annotation.processing.Generated(
+    value = "org.openapitools.codegen.languages.JavaClientCodegen",
+    date = "2020-02-10T13:51:22.963150-06:00[America/Chicago]"
+)
 public class User {
-  public static final String JSON_PROPERTY_AVATAR_URL = "avatar_url";
-  private String avatarUrl;
 
-  public static final String JSON_PROPERTY_BANNER_URL = "banner_url";
-  private String bannerUrl;
+    public static final String JSON_PROPERTY_AVATAR_URL = "avatar_url";
+    private String avatarUrl;
 
-  public static final String JSON_PROPERTY_DISPLAY_NAME = "display_name";
-  private String displayName;
+    public static final String JSON_PROPERTY_BANNER_URL = "banner_url";
+    private String bannerUrl;
 
-  public static final String JSON_PROPERTY_PROFILE_URL = "profile_url";
-  private String profileUrl;
+    public static final String JSON_PROPERTY_DISPLAY_NAME = "display_name";
+    private String displayName;
 
-  public static final String JSON_PROPERTY_TWITTER = "twitter";
-  private String twitter;
+    public static final String JSON_PROPERTY_PROFILE_URL = "profile_url";
+    private String profileUrl;
 
-  public static final String JSON_PROPERTY_USERNAME = "username";
-  private String username;
+    public static final String JSON_PROPERTY_TWITTER = "twitter";
+    private String twitter;
 
+    public static final String JSON_PROPERTY_USERNAME = "username";
+    private String username;
 
-  public User avatarUrl(String avatarUrl) {
-
-    this.avatarUrl = avatarUrl;
-    return this;
-  }
-
-   /**
-   * The URL for this user&#39;s avatar image.
-   * @return avatarUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://media1.giphy.com/avatars/election2016/XwYrZi5H87o6.gif", value = "The URL for this user's avatar image.")
-  @JsonProperty(JSON_PROPERTY_AVATAR_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getAvatarUrl() {
-    return avatarUrl;
-  }
-
-
-  public void setAvatarUrl(String avatarUrl) {
-    this.avatarUrl = avatarUrl;
-  }
-
-
-  public User bannerUrl(String bannerUrl) {
-
-    this.bannerUrl = bannerUrl;
-    return this;
-  }
-
-   /**
-   * The URL for the banner image that appears atop this user&#39;s profile page.
-   * @return bannerUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://media4.giphy.com/avatars/cheezburger/XkuejOhoGLE6.jpg", value = "The URL for the banner image that appears atop this user's profile page.")
-  @JsonProperty(JSON_PROPERTY_BANNER_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getBannerUrl() {
-    return bannerUrl;
-  }
-
-
-  public void setBannerUrl(String bannerUrl) {
-    this.bannerUrl = bannerUrl;
-  }
-
-
-  public User displayName(String displayName) {
-
-    this.displayName = displayName;
-    return this;
-  }
-
-   /**
-   * The display name associated with this user (contains formatting the base username might not).
-   * @return displayName
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "JoeCool4000", value = "The display name associated with this user (contains formatting the base username might not).")
-  @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDisplayName() {
-    return displayName;
-  }
-
-
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
-  }
-
-
-  public User profileUrl(String profileUrl) {
-
-    this.profileUrl = profileUrl;
-    return this;
-  }
-
-   /**
-   * The URL for this user&#39;s profile.
-   * @return profileUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "https://giphy.com/cheezburger/", value = "The URL for this user's profile.")
-  @JsonProperty(JSON_PROPERTY_PROFILE_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getProfileUrl() {
-    return profileUrl;
-  }
-
-
-  public void setProfileUrl(String profileUrl) {
-    this.profileUrl = profileUrl;
-  }
-
-
-  public User twitter(String twitter) {
-
-    this.twitter = twitter;
-    return this;
-  }
-
-   /**
-   * The Twitter username associated with this user, if applicable.
-   * @return twitter
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "@joecool4000", value = "The Twitter username associated with this user, if applicable.")
-  @JsonProperty(JSON_PROPERTY_TWITTER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getTwitter() {
-    return twitter;
-  }
-
-
-  public void setTwitter(String twitter) {
-    this.twitter = twitter;
-  }
-
-
-  public User username(String username) {
-
-    this.username = username;
-    return this;
-  }
-
-   /**
-   * The username associated with this user.
-   * @return username
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "joecool4000", value = "The username associated with this user.")
-  @JsonProperty(JSON_PROPERTY_USERNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getUsername() {
-    return username;
-  }
-
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public User avatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * The URL for this user&#39;s avatar image.
+     * @return avatarUrl
+     **/
+    @javax.annotation.Nullable
+    @Schema(
+        example = "https://media1.giphy.com/avatars/election2016/XwYrZi5H87o6.gif",
+        description = "The URL for this user's avatar image."
+    )
+    @JsonProperty(JSON_PROPERTY_AVATAR_URL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
-    User user = (User) o;
-    return Objects.equals(this.avatarUrl, user.avatarUrl) &&
-        Objects.equals(this.bannerUrl, user.bannerUrl) &&
-        Objects.equals(this.displayName, user.displayName) &&
-        Objects.equals(this.profileUrl, user.profileUrl) &&
-        Objects.equals(this.twitter, user.twitter) &&
-        Objects.equals(this.username, user.username);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(avatarUrl, bannerUrl, displayName, profileUrl, twitter, username);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class User {\n");
-    sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
-    sb.append("    bannerUrl: ").append(toIndentedString(bannerUrl)).append("\n");
-    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
-    sb.append("    profileUrl: ").append(toIndentedString(profileUrl)).append("\n");
-    sb.append("    twitter: ").append(toIndentedString(twitter)).append("\n");
-    sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public User bannerUrl(String bannerUrl) {
+        this.bannerUrl = bannerUrl;
+        return this;
+    }
+
+    /**
+     * The URL for the banner image that appears atop this user&#39;s profile page.
+     * @return bannerUrl
+     **/
+    @javax.annotation.Nullable
+    @Schema(
+        example = "https://media4.giphy.com/avatars/cheezburger/XkuejOhoGLE6.jpg",
+        description = "The URL for the banner image that appears atop this user's profile page."
+    )
+    @JsonProperty(JSON_PROPERTY_BANNER_URL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getBannerUrl() {
+        return bannerUrl;
+    }
+
+    public void setBannerUrl(String bannerUrl) {
+        this.bannerUrl = bannerUrl;
+    }
+
+    public User displayName(String displayName) {
+        this.displayName = displayName;
+        return this;
+    }
+
+    /**
+     * The display name associated with this user (contains formatting the base username might not).
+     * @return displayName
+     **/
+    @javax.annotation.Nullable
+    @Schema(
+        example = "JoeCool4000",
+        description = "The display name associated with this user (contains formatting the base username might not)."
+    )
+    @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public User profileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
+        return this;
+    }
+
+    /**
+     * The URL for this user&#39;s profile.
+     * @return profileUrl
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "https://giphy.com/cheezburger/", description = "The URL for this user's profile.")
+    @JsonProperty(JSON_PROPERTY_PROFILE_URL)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getProfileUrl() {
+        return profileUrl;
+    }
+
+    public void setProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
+    }
+
+    public User twitter(String twitter) {
+        this.twitter = twitter;
+        return this;
+    }
+
+    /**
+     * The Twitter username associated with this user, if applicable.
+     * @return twitter
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "@joecool4000", description = "The Twitter username associated with this user, if applicable.")
+    @JsonProperty(JSON_PROPERTY_TWITTER)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
+    }
+
+    public User username(String username) {
+        this.username = username;
+        return this;
+    }
+
+    /**
+     * The username associated with this user.
+     * @return username
+     **/
+    @javax.annotation.Nullable
+    @Schema(example = "joecool4000", description = "The username associated with this user.")
+    @JsonProperty(JSON_PROPERTY_USERNAME)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return (
+            Objects.equals(this.avatarUrl, user.avatarUrl) &&
+            Objects.equals(this.bannerUrl, user.bannerUrl) &&
+            Objects.equals(this.displayName, user.displayName) &&
+            Objects.equals(this.profileUrl, user.profileUrl) &&
+            Objects.equals(this.twitter, user.twitter) &&
+            Objects.equals(this.username, user.username)
+        );
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(avatarUrl, bannerUrl, displayName, profileUrl, twitter, username);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class User {\n");
+        sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
+        sb.append("    bannerUrl: ").append(toIndentedString(bannerUrl)).append("\n");
+        sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+        sb.append("    profileUrl: ").append(toIndentedString(profileUrl)).append("\n");
+        sb.append("    twitter: ").append(toIndentedString(twitter)).append("\n");
+        sb.append("    username: ").append(toIndentedString(username)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 }
-

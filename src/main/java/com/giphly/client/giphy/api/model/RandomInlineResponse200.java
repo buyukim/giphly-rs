@@ -10,121 +10,107 @@
  * Do not edit the class manually.
  */
 
-
 package com.giphly.client.giphy.api.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.swagger.annotations.ApiModelProperty;
-
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
  * InlineResponse200
  */
-@JsonPropertyOrder({
-  RandomInlineResponse200.JSON_PROPERTY_DATA,
-  RandomInlineResponse200.JSON_PROPERTY_META
-})
-@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-10T13:51:22.963150-06:00[America/Chicago]")
+@JsonPropertyOrder({ RandomInlineResponse200.JSON_PROPERTY_DATA, RandomInlineResponse200.JSON_PROPERTY_META })
+@javax.annotation.processing.Generated(
+    value = "org.openapitools.codegen.languages.JavaClientCodegen",
+    date = "2020-02-10T13:51:22.963150-06:00[America/Chicago]"
+)
 public class RandomInlineResponse200 {
-  public static final String JSON_PROPERTY_DATA = "data";
-  private RandomId data;
 
-  public static final String JSON_PROPERTY_META = "meta";
-  private Meta meta;
+    public static final String JSON_PROPERTY_DATA = "data";
+    private RandomId data;
 
+    public static final String JSON_PROPERTY_META = "meta";
+    private Meta meta;
 
-  public RandomInlineResponse200 data(RandomId data) {
-
-    this.data = data;
-    return this;
-  }
-
-   /**
-   * Get data
-   * @return data
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public RandomId getData() {
-    return data;
-  }
-
-
-  public void setData(RandomId data) {
-    this.data = data;
-  }
-
-
-  public RandomInlineResponse200 meta(Meta meta) {
-
-    this.meta = meta;
-    return this;
-  }
-
-   /**
-   * Get meta
-   * @return meta
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_META)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Meta getMeta() {
-    return meta;
-  }
-
-
-  public void setMeta(Meta meta) {
-    this.meta = meta;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public RandomInlineResponse200 data(RandomId data) {
+        this.data = data;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get data
+     * @return data
+     **/
+    @javax.annotation.Nullable
+    @Schema
+    @JsonProperty(JSON_PROPERTY_DATA)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public RandomId getData() {
+        return data;
     }
-    RandomInlineResponse200 randomInlineResponse200 = (RandomInlineResponse200) o;
-    return Objects.equals(this.data, randomInlineResponse200.data) &&
-        Objects.equals(this.meta, randomInlineResponse200.meta);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(data, meta);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse200 {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setData(RandomId data) {
+        this.data = data;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public RandomInlineResponse200 meta(Meta meta) {
+        this.meta = meta;
+        return this;
+    }
+
+    /**
+     * Get meta
+     * @return meta
+     **/
+    @javax.annotation.Nullable
+    @Schema
+    @JsonProperty(JSON_PROPERTY_META)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        RandomInlineResponse200 randomInlineResponse200 = (RandomInlineResponse200) o;
+        return Objects.equals(this.data, randomInlineResponse200.data) && Objects.equals(this.meta, randomInlineResponse200.meta);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(data, meta);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class InlineResponse200 {\n");
+        sb.append("    data: ").append(toIndentedString(data)).append("\n");
+        sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 }
-
